@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiegoTestes — Aplicações HostGator VPS</title>
+<meta name="description" content="Área de homologações — menu das aplicações hospedadas na VPS diegotestes.com">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%235a8ee2'/%3E%3Ctext x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b4d;
+    --ink-2:#2b3d66;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{
+    font-family:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    color:var(--ink);
+    height:100vh;height:100dvh;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 74% 22%, rgba(255,255,255,.50), rgba(255,255,255,0) 56%),
+      radial-gradient(130% 120% at 102% 104%, rgba(38,58,140,.50), rgba(38,58,140,0) 58%),
+      linear-gradient(152deg, #5b93e8 0%, #74a9f1 40%, #93c0f7 60%, #6b93ea 100%);
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* fine film grain, like the reference */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    opacity:.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .page{
+    position:relative;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(20px,4vw,64px);
+    padding:clamp(16px,4vmin,64px);
+    max-width:1480px;
+    margin:0 auto;
+    overflow:hidden;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    flex:1 1 42%;
+    max-width:560px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:clamp(.4rem,1.6vh,1.1rem);
+    min-height:0;
+  }
+  .brand{display:flex;align-items:center;gap:.65em;width:max-content;font-size:clamp(1rem,2.4vmin,1.5rem);}
+  .brand .avatar{
+    width:2.1em;height:2.1em;border-radius:50%;
+    border:2px solid rgba(255,255,255,.8);
+    box-shadow:0 .3em .7em rgba(15,32,70,.35);
+    background:#dbe7fb;object-fit:cover;flex:none;
+  }
+  .brand .who{font-weight:700;font-size:1em;color:var(--ink);}
+  .brand:hover .who{text-decoration:underline;}
+
+  .title{
+    font-family:"Archivo Black","Archivo",sans-serif;
+    font-weight:400;
+    font-size:clamp(1.7rem, min(6.4vw, 9vh), 4.6rem);
+    line-height:.98;
+    letter-spacing:-.02em;
+    text-transform:uppercase;
+    color:var(--ink);
+    margin:0;
+  }
+  .subtitle{
+    font-size:clamp(.85rem, min(1.9vw, 2.6vh), 1.5rem);
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    margin:0;
+  }
+  .sign{
+    font-weight:500;
+    font-size:clamp(.66rem, 1.2vw, .8rem);
+    letter-spacing:.05em;
+    color:var(--ink);
+    opacity:.5;
+    margin:.7rem 0 0;
+  }
+
+  /* ---------- STAGE / DECK 3D ---------- */
+  .stage{
+    flex:1 1 58%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    perspective:1600px;
+    perspective-origin:60% 40%;
+  }
+  .deck{
+    --cw:clamp(104px, min(14.5vw, 23vh), 210px);
+    --gap:calc(var(--cw) * 0.16);
+    display:grid;
+    grid-template-columns:repeat(3, var(--cw));
+    gap:var(--gap);
+    transform-style:preserve-3d;
+    transform:translateX(-4%) rotateX(20deg) rotateY(-18deg) rotate(-2.5deg);
+  }
+  /* ===== Carta estilo TCG ===== */
+  .card{
+    position:relative;
+    display:block;
+    width:var(--cw);
+    aspect-ratio:5/7;
+    font-size:calc(var(--cw) * 0.092);
+    transform-style:preserve-3d;
+    transform:translate3d(var(--tx,0), var(--ty,0), var(--tz,0)) rotate(var(--rot,0));
+    transition:transform .45s cubic-bezier(.22,.61,.36,1), filter .45s ease;
+    color:var(--fg,#fff);
+    --edge:color-mix(in srgb, var(--accent) 52%, #05070d);
+    --edge-hi:color-mix(in srgb, var(--accent) 68%, #ffffff);
+    --panel:color-mix(in srgb, var(--accent) 80%, #0a0d16);
+    --plate:color-mix(in srgb, var(--accent) 90%, #ffffff);
+    filter:drop-shadow(0 calc(var(--cw)*0.10) calc(var(--cw)*0.14) rgba(6,10,25,.5));
+  }
+  .card:hover,
+  .card:focus-visible{
+    transform:translate3d(var(--tx,0), calc(var(--ty,0) - var(--cw)*0.09), calc(var(--tz,0) + var(--cw)*0.30)) rotate(0deg);
+    filter:drop-shadow(0 calc(var(--cw)*0.16) calc(var(--cw)*0.18) rgba(6,10,25,.6));
+    outline:none;
+    z-index:5;
+  }
+
+  .card .frame{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    gap:.34em;
+    padding:.5em;
+    border-radius:.86em;
+    background:linear-gradient(150deg, var(--edge-hi) 0%, var(--edge) 46%, #04060b 100%);
+    box-shadow:
+      inset 0 0 0 .055em rgba(255,255,255,.20),
+      inset 0 0 .5em rgba(0,0,0,.55);
+  }
+  .card .frame::before{
+    content:"";
+    position:absolute;inset:.5em;
+    border-radius:.5em;
+    background:linear-gradient(160deg,
+      color-mix(in srgb, var(--panel) 76%, #fff) 0%,
+      var(--panel) 42%,
+      color-mix(in srgb, var(--panel) 72%, #000) 100%);
+    box-shadow:inset 0 0 0 .05em rgba(0,0,0,.4);
+    z-index:0;
+  }
+  .card .frame > *{position:relative;z-index:1;}
+
+  .card .titlebar{
+    display:flex;align-items:center;gap:.4em;
+    padding:.34em .5em;
+    border-radius:.38em;
+    background:linear-gradient(180deg,
+      color-mix(in srgb, var(--plate) 82%, #fff) 0%,
+      var(--plate) 52%,
+      color-mix(in srgb, var(--plate) 78%, #000) 100%);
+    box-shadow:
+      inset 0 .05em 0 rgba(255,255,255,.45),
+      inset 0 0 0 .05em rgba(0,0,0,.28),
+      0 .1em .18em rgba(0,0,0,.32);
+  }
+  .card .gem{
+    width:.8em;height:.8em;flex:none;
+    border-radius:.12em;
+    transform:rotate(45deg);
+    background:radial-gradient(circle at 32% 30%, #fff 0%, var(--edge-hi) 42%, var(--edge) 100%);
+    box-shadow:0 0 .18em rgba(255,255,255,.55), inset 0 0 .1em rgba(0,0,0,.45);
+  }
+  .card .cardname{
+    flex:1;min-width:0;
+    font-family:"Archivo Black","Archivo",sans-serif;
+    font-size:.72em;line-height:1;
+    letter-spacing:-.02em;
+    text-transform:uppercase;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+
+  .card .art{
+    position:relative;
+    flex:1;min-height:0;
+    border-radius:.3em;
+    overflow:hidden;
+    background:#0c1018;
+    box-shadow:
+      inset 0 0 0 .09em var(--edge),
+      inset 0 0 0 .13em rgba(255,255,255,.10),
+      inset 0 .3em .55em rgba(0,0,0,.5);
+  }
+  .card .art:has(img.ready) .ph{opacity:0;}
+  .card .art .ph{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Archivo Black","Archivo",sans-serif;
+    font-size:2.6em;line-height:1;
+    color:#fff;opacity:.9;
+    user-select:none;
+  }
+  .card .art img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;object-position:top center;
+    opacity:0;transition:opacity .5s ease;
+  }
+  .card .art img.ready{opacity:1;}
+
+  .card .typeline{
+    padding:.24em .5em;
+    border-radius:.3em;
+    font-size:.5em;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    background:linear-gradient(180deg,
+      color-mix(in srgb, var(--plate) 74%, #000) 0%,
+      color-mix(in srgb, var(--plate) 88%, #000) 100%);
+    box-shadow:inset 0 0 0 .07em rgba(0,0,0,.32);
+    opacity:.95;
+  }
+
+  .card .textbox{
+    display:flex;flex-direction:column;gap:.3em;
+    padding:.46em .55em;
+    border-radius:.34em;
+    background:linear-gradient(160deg,
+      color-mix(in srgb, var(--panel) 86%, #fff) 0%,
+      var(--panel) 52%,
+      color-mix(in srgb, var(--panel) 80%, #000) 100%);
+    box-shadow:inset 0 0 0 .06em rgba(0,0,0,.3), inset 0 .08em 0 rgba(255,255,255,.14);
+  }
+  .card .host{
+    font-size:.5em;font-weight:600;opacity:.82;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .card .row{
+    display:flex;align-items:center;justify-content:flex-end;
+  }
+  .card .cta{
+    font-size:.5em;font-weight:800;letter-spacing:.05em;
+    padding:.36em .7em;border-radius:999px;
+    background:var(--fg);color:var(--panel);
+    box-shadow:0 .1em .2em rgba(0,0,0,.35);
+  }
+
+  .card .badge{
+    position:absolute;right:-.16em;top:-.16em;z-index:3;
+    min-width:1.7em;height:1.7em;padding:0 .32em;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Archivo Black","Archivo",sans-serif;
+    font-size:.56em;letter-spacing:.03em;
+    color:var(--fg);
+    border-radius:.5em;
+    background:radial-gradient(circle at 34% 28%,
+      color-mix(in srgb, var(--plate) 86%, #fff) 0%,
+      var(--plate) 52%, var(--edge) 100%);
+    box-shadow:
+      inset 0 0 0 .09em rgba(255,255,255,.28),
+      inset 0 0 .2em rgba(0,0,0,.5),
+      0 .12em .24em rgba(0,0,0,.45);
+  }
+  .card .foil{
+    position:absolute;inset:0;z-index:4;
+    border-radius:.86em;
+    pointer-events:none;
+    background:linear-gradient(115deg,
+      transparent 32%,
+      rgba(255,255,255,.32) 44%,
+      rgba(255,255,255,.05) 52%,
+      transparent 66%);
+    mix-blend-mode:screen;
+    opacity:.32;
+    transform:translateX(-14%);
+    transition:opacity .45s ease, transform .6s ease;
+  }
+  .card:hover .foil,
+  .card:focus-visible .foil{opacity:.7;transform:translateX(14%);}
+
+  .noscript{
+    background:rgba(255,255,255,.92);
+    border-radius:16px;padding:16px 20px;
+    font-weight:600;color:var(--ink);
+    max-width:360px;
+  }
+
+  /* ---------- RETRATO / TELAS ESTREITAS ---------- */
+  @media (max-width:1000px){
+    .page{
+      flex-direction:column;
+      justify-content:center;
+      gap:clamp(12px,3vh,28px);
+      padding:clamp(14px,4vw,32px);
+    }
+    .hero{flex:0 0 auto;max-width:none;gap:.35rem;}
+    .title{font-size:clamp(1.4rem, min(7vw, 6.5vh), 2.9rem);}
+    .stage{flex:1 1 auto;height:auto;width:100%;perspective:none;}
+    .deck{
+      --cw:min(43vw, 13.5vh);
+      grid-template-columns:repeat(2, var(--cw));
+      justify-content:center;
+      transform:none;
+    }
+    .card{transform:none !important;aspect-ratio:3/4;}
+  }
+  @media (max-width:1000px) and (orientation:landscape){
+    .page{flex-direction:row;}
+    .hero{flex:1 1 38%;}
+    .stage{height:100%;}
+    .deck{--cw:min(19vw, 24vh);grid-template-columns:repeat(3, var(--cw));}
+    .card{aspect-ratio:5/7;}
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <a class="brand" href="https://github.com/DiegoVelosoS" target="_blank" rel="noopener">
+        <img class="avatar" src="https://github.com/DiegoVelosoS.png?size=140" alt="Avatar de DiegoVelosoS">
+        <span class="who">DiegoVelosoS</span>
+      </a>
+      <h1 class="title">DiegoTestes Aplicações HostGator VPS</h1>
+      <p class="subtitle">Área de homologações</p>
+      <p class="sign">© 2026 Diego</p>
+    </section>
+
+    <section class="stage">
+      <div class="deck" id="deck">
+        <noscript><div class="noscript">Ative o JavaScript para carregar os cards das aplicações.</div></noscript>
+      </div>
+    </section>
+  </main>
+
+<script>
+  /* =======================================================================
+     👉 EDITE ESTA LISTA com as aplicações hospedadas na VPS (diegotestes.com).
+        name   : nome da carta
+        url    : link aberto ao clicar (tela de entrada da aplicação)
+        accent : cor da carta (opcional; padrão azul)
+        shot   : URL usada só para o print ao vivo (opcional; padrão = url)
+        img    : caminho de uma imagem fixa p/ a "arte" (ex.: "assets/foo.png")
+        noshot : true  -> não tenta screenshot, mostra só a inicial do app
+        type   : texto da linha de tipo (padrão "Aplicação · Homologação")
+        flavor : texto em itálico no rodapé da carta
+        badge  : selo no canto (padrão "HML")
+     ======================================================================= */
+  const APPS = [
+    { name: "Eleitores",     url: "https://eleitores.diegotestes.com",     accent: "#2f6fc4" },
+    { name: "Coleta",        url: "https://coleta.diegotestes.com",        accent: "#0d9488" },
+    { name: "ProgramasEADI", url: "https://programaseadi.diegotestes.com", accent: "#6d28d9" },
+    { name: "Zeerr",         url: "https://zeerr.diegotestes.com",         accent: "#18181b" },
+    { name: "Louvor",        url: "https://louvor.diegotestes.com",        accent: "#e11d48" },
+    // expoferrquiz.diegotestes.com responde 404 -> usando imagem fixa em assets/.
+    { name: "ExpoferrQuiz",  url: "https://expoferrquiz.diegotestes.com",  accent: "#0a8f47", img: "assets/expoferrquiz.png" },
+  ];
+
+  // deslocamento 3D por posição (fração da largura do card).
+  //   tx = horizontal (- esquerda / + direita)   ty = vertical (- sobe / + desce)
+  //   tz = profundidade (+ para frente)          rot = giro do card em graus
+  // Padrão: coluna da ESQUERDA mais baixa e mais afastada; MEIO e DIREITA levantados e alinhados.
+  const OFFSETS = [
+    { tx: "-0.09", ty: "0.03",  tz: "0.04", rot: "-0.5deg" },  // 1  Eleitores      (col. esq, cima)
+    { tx: "0",     ty: "-0.06", tz: "0.12", rot: "0.5deg"  },  // 2  Coleta         (col. meio, cima)
+    { tx: "0",     ty: "0.00",  tz: "0.08", rot: "1.5deg"  },  // 3  ProgramasEADI  (col. dir, cima)
+    { tx: "-0.09", ty: "0.03",  tz: "0.04", rot: "-0.5deg" },  // 4  Zeerr          (col. esq, baixo)
+    { tx: "0",     ty: "-0.06", tz: "0.12", rot: "0.5deg"  },  // 5  Louvor         (col. meio, baixo)
+    { tx: "0",     ty: "0.00",  tz: "0.08", rot: "1.5deg"  },  // 6  ExpoferrQuiz   (col. dir, baixo)
+  ];
+
+  const deck = document.getElementById("deck");
+  const hostOf = url => { try { return new URL(url).hostname.replace(/^www\./,""); } catch { return url; } };
+
+  function isLight(hex){
+    const c = (hex||"").replace("#","");
+    if (c.length < 6) return false;
+    const r=parseInt(c.slice(0,2),16), g=parseInt(c.slice(2,4),16), b=parseInt(c.slice(4,6),16);
+    return (0.2126*r + 0.7152*g + 0.0722*b) > 150;
+  }
+
+  // Provedores de screenshot (sem chave de API). Tenta o 1º; se falhar, o 2º.
+  const PROVIDERS = [
+    (url, n) => "https://s.wordpress.com/mshots/v1/" + encodeURIComponent(url) +
+                "?w=900&h=675" + (n ? "&r=" + n : ""),
+    (url)    => "https://image.thum.io/get/width/900/crop/720/noanimate/" + url,
+  ];
+
+  // Carrega o print com tentativas; se nada vier, fica só o placeholder (inicial do app).
+  function loadShot(img, url){
+    let provider = 0, tries = 0;
+    const MAX = 6;
+    const go = () => { img.src = PROVIDERS[provider](url, tries); };
+    img.onload = () => {
+      // mShots costuma devolver 1º uma imagem "gerando..." pequena — insiste até vir a real.
+      if (provider === 0 && img.naturalWidth && img.naturalWidth < 600 && tries < MAX){
+        tries++; setTimeout(go, 3500); return;
+      }
+      img.classList.add("ready");
+    };
+    img.onerror = () => {
+      if (provider === 0 && tries < MAX){ tries++; setTimeout(go, 3500); return; }
+      if (provider === 0){ provider = 1; tries = 0; go(); return; }
+      img.remove(); // desiste sem quebrar o layout — sobra o placeholder
+    };
+    go();
+  }
+
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  };
+
+  APPS.forEach((app, i) => {
+    const o = OFFSETS[i % OFFSETS.length];
+    const a = el("a", "card");
+    a.href = app.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.setAttribute("aria-label", "Abrir " + app.name);
+    a.style.setProperty("--accent", app.accent || "#2f6fc4");
+    a.style.setProperty("--fg", isLight(app.accent) ? "#12203a" : "#ffffff");
+    a.style.setProperty("--tx", `calc(var(--cw) * ${o.tx || 0})`);
+    a.style.setProperty("--ty", `calc(var(--cw) * ${o.ty})`);
+    a.style.setProperty("--tz", `calc(var(--cw) * ${o.tz})`);
+    a.style.setProperty("--rot", o.rot);
+
+    const frame = el("span", "frame");
+
+    // faixa do nome (título da carta)
+    const titlebar = el("span", "titlebar");
+    titlebar.append(el("span", "gem"), el("span", "cardname", app.name));
+
+    // janela de "arte" = print da tela inicial
+    const art = el("span", "art");
+    const ph = el("span", "ph", (app.name || "?").trim().charAt(0).toUpperCase());
+    const img = el("img");
+    img.loading = "lazy"; img.alt = "";
+    art.append(ph, img);
+    if (app.img){                         // imagem local/fixa (ex.: assets/xxx.png)
+      img.src = app.img;
+      img.onload = () => img.classList.add("ready");
+      img.onerror = () => img.remove();
+    } else if (app.noshot){               // sem print
+      img.remove();
+    } else {
+      loadShot(img, app.shot || app.url); // screenshot ao vivo
+    }
+
+    // linha de tipo
+    const typeline = el("span", "typeline", app.type || "Aplicação · Homologação");
+
+    // caixa de texto (rodapé da carta)
+    const textbox = el("span", "textbox");
+    const row = el("span", "row");
+    row.append(el("span", "cta", "ABRIR ↗"));
+    textbox.append(el("span", "host", hostOf(app.url)), row);
+
+    frame.append(titlebar, art, typeline, textbox);
+    a.append(frame, el("span", "badge", app.badge || "HML"), el("span", "foil"));
+    deck.appendChild(a);
+  });
+</script>
+</body>
+</html>
