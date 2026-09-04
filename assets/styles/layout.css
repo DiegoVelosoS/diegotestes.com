@@ -1,0 +1,15 @@
+/* Grade principal da página: hero à esquerda, palco dos cards à direita. */
+.page{
+  position:relative;
+  flex:1 1 auto;
+  min-height:0;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(20px,4vw,64px);
+  padding:clamp(16px,4vmin,64px);
+  max-width:1480px;
+  margin:0 auto;
+  overflow:hidden;
+}

@@ -1,0 +1,5 @@
+/* Design tokens — cores e valores globais reutilizados nas demais folhas. */
+:root{
+  --ink:#1c2b4d;
+  --ink-2:#2b3d66;
+}

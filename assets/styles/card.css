@@ -1,0 +1,180 @@
+/* ===== Carta estilo TCG ===== */
+.card{
+  position:relative;
+  display:block;
+  width:var(--cw);
+  aspect-ratio:5/7;
+  font-size:calc(var(--cw) * 0.092);
+  border-radius:.86em;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  transform:translate3d(var(--tx,0), var(--ty,0), var(--tz,0)) rotate(var(--rot,0)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .45s cubic-bezier(.22,.61,.36,1), filter .45s ease;
+  color:var(--fg,#fff);
+  --edge:color-mix(in srgb, var(--accent) 52%, #05070d);
+  --edge-hi:color-mix(in srgb, var(--accent) 68%, #ffffff);
+  --panel:color-mix(in srgb, var(--accent) 80%, #0a0d16);
+  --plate:color-mix(in srgb, var(--accent) 90%, #ffffff);
+  filter:drop-shadow(0 calc(var(--cw)*0.10) calc(var(--cw)*0.14) rgba(6,10,25,.5));
+}
+.card:hover,
+.card:focus-visible{
+  transform:translate3d(var(--tx,0), calc(var(--ty,0) - var(--cw)*0.09), calc(var(--tz,0) + var(--cw)*0.30)) rotate(0deg) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .12s ease-out, filter .45s ease;
+  filter:drop-shadow(0 calc(var(--cw)*0.16) calc(var(--cw)*0.18) rgba(6,10,25,.6));
+  outline:none;
+  z-index:5;
+}
+
+.card .frame{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  gap:.34em;
+  padding:.5em;
+  border-radius:.86em;
+  background:linear-gradient(150deg, var(--edge-hi) 0%, var(--edge) 46%, #04060b 100%);
+  box-shadow:
+    inset 0 0 0 .055em rgba(255,255,255,.20),
+    inset 0 0 .5em rgba(0,0,0,.55);
+}
+.card .frame::before{
+  content:"";
+  position:absolute;inset:.5em;
+  border-radius:.5em;
+  background:linear-gradient(160deg,
+    color-mix(in srgb, var(--panel) 76%, #fff) 0%,
+    var(--panel) 42%,
+    color-mix(in srgb, var(--panel) 72%, #000) 100%);
+  box-shadow:inset 0 0 0 .05em rgba(0,0,0,.4);
+  z-index:0;
+}
+.card .frame > *{position:relative;z-index:1;}
+
+.card .titlebar{
+  display:flex;align-items:center;gap:.4em;
+  padding:.34em .5em;
+  border-radius:.38em;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--plate) 82%, #fff) 0%,
+    var(--plate) 52%,
+    color-mix(in srgb, var(--plate) 78%, #000) 100%);
+  box-shadow:
+    inset 0 .05em 0 rgba(255,255,255,.45),
+    inset 0 0 0 .05em rgba(0,0,0,.28),
+    0 .1em .18em rgba(0,0,0,.32);
+}
+.card .gem{
+  width:.8em;height:.8em;flex:none;
+  border-radius:.12em;
+  transform:rotate(45deg);
+  background:radial-gradient(circle at 32% 30%, #fff 0%, var(--edge-hi) 42%, var(--edge) 100%);
+  box-shadow:0 0 .18em rgba(255,255,255,.55), inset 0 0 .1em rgba(0,0,0,.45);
+}
+.card .cardname{
+  flex:1;min-width:0;
+  font-family:"Archivo Black","Archivo",sans-serif;
+  font-size:.72em;line-height:1;
+  letter-spacing:-.02em;
+  text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+.card .art{
+  position:relative;
+  flex:1;min-height:0;
+  border-radius:.3em;
+  overflow:hidden;
+  background:#0c1018;
+  box-shadow:
+    inset 0 0 0 .09em var(--edge),
+    inset 0 0 0 .13em rgba(255,255,255,.10),
+    inset 0 .3em .55em rgba(0,0,0,.5);
+}
+.card .art:has(img.ready) .ph{opacity:0;}
+.card .art .ph{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Archivo Black","Archivo",sans-serif;
+  font-size:2.6em;line-height:1;
+  color:#fff;opacity:.9;
+  user-select:none;
+}
+.card .art img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  opacity:0;transition:opacity .5s ease;
+}
+.card .art img.ready{opacity:1;}
+
+.card .typeline{
+  padding:.24em .5em;
+  border-radius:.3em;
+  font-size:.5em;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--plate) 74%, #000) 0%,
+    color-mix(in srgb, var(--plate) 88%, #000) 100%);
+  box-shadow:inset 0 0 0 .07em rgba(0,0,0,.32);
+  opacity:.95;
+}
+
+.card .textbox{
+  display:flex;flex-direction:column;gap:.3em;
+  padding:.46em .55em;
+  border-radius:.34em;
+  background:linear-gradient(160deg,
+    color-mix(in srgb, var(--panel) 86%, #fff) 0%,
+    var(--panel) 52%,
+    color-mix(in srgb, var(--panel) 80%, #000) 100%);
+  box-shadow:inset 0 0 0 .06em rgba(0,0,0,.3), inset 0 .08em 0 rgba(255,255,255,.14);
+}
+.card .host{
+  font-size:.5em;font-weight:600;opacity:.82;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.card .row{
+  display:flex;align-items:center;justify-content:flex-end;
+}
+.card .cta{
+  font-size:.5em;font-weight:800;letter-spacing:.05em;
+  padding:.36em .7em;border-radius:999px;
+  background:var(--fg);color:var(--panel);
+  box-shadow:0 .1em .2em rgba(0,0,0,.35);
+}
+
+.card .badge{
+  position:absolute;right:-.16em;top:-.16em;z-index:3;
+  min-width:1.7em;height:1.7em;padding:0 .32em;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Archivo Black","Archivo",sans-serif;
+  font-size:.56em;letter-spacing:.03em;
+  color:var(--fg);
+  border-radius:.5em;
+  background:radial-gradient(circle at 34% 28%,
+    color-mix(in srgb, var(--plate) 86%, #fff) 0%,
+    var(--plate) 52%, var(--edge) 100%);
+  box-shadow:
+    inset 0 0 0 .09em rgba(255,255,255,.28),
+    inset 0 0 .2em rgba(0,0,0,.5),
+    0 .12em .24em rgba(0,0,0,.45);
+}
+.card .foil{
+  position:absolute;inset:0;z-index:4;
+  border-radius:.86em;
+  pointer-events:none;
+  background:linear-gradient(115deg,
+    transparent 32%,
+    rgba(255,255,255,.32) 44%,
+    rgba(255,255,255,.05) 52%,
+    transparent 66%);
+  mix-blend-mode:screen;
+  opacity:.32;
+  transform:translateX(-14%);
+  transition:opacity .45s ease, transform .6s ease;
+}
+.card:hover .foil,
+.card:focus-visible .foil{opacity:.7;transform:translateX(14%);}

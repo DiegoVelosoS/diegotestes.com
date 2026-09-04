@@ -1,0 +1,61 @@
+/* Reset leve, tipografia base e o fundo com granulado. */
+*{box-sizing:border-box;}
+html,body{margin:0;}
+body{
+  font-family:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  height:100vh;height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 74% 22%, rgba(255,255,255,.50), rgba(255,255,255,0) 56%),
+    radial-gradient(130% 120% at 102% 104%, rgba(38,58,140,.50), rgba(38,58,140,0) 58%),
+    linear-gradient(152deg, #5b93e8 0%, #74a9f1 40%, #93c0f7 60%, #6b93ea 100%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none;}
+
+/* nuvens (Lottie) drifting no topo, na altura de um cabeçalho, sobre o
+   gradiente de céu, atrás do conteúdo */
+.bg-clouds{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:clamp(140px, 24vh, 320px);
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.55;
+  mask-image:linear-gradient(to bottom, #000 65%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 65%, transparent 100%);
+}
+.bg-clouds svg{width:100%;height:100%;}
+
+/* mesma camada de nuvens, espelhada e escurecida no rodapé, bem sutil,
+   para dar profundidade/sombra à parte de baixo da página */
+.bg-clouds--bottom{
+  top:auto;
+  bottom:0;
+  transform:scaleY(-1);
+  opacity:.05;
+  filter:brightness(0) saturate(0);
+  mask-image:linear-gradient(to top, transparent 0%, #000 25%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to top, transparent 0%, #000 25%, transparent 100%);
+}
+
+/* fine film grain, like the reference */
+body::after{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  opacity:.05;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.noscript{
+  background:rgba(255,255,255,.92);
+  border-radius:16px;padding:16px 20px;
+  font-weight:600;color:var(--ink);
+  max-width:360px;
+}

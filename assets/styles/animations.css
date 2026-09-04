@@ -1,0 +1,145 @@
+/* ---------- ÁREA DE ANIMAÇÕES ---------- */
+/* Estrutura do bloco. Os efeitos (assets/scripts/animations/*) injetam
+   .fx-layer + .fx-sprite dentro de [data-fx-stage]. */
+
+.fx-section{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(24px,6vmin,80px);
+}
+.fx-inner{
+  width:min(1200px,100%);
+  display:flex;
+  flex-direction:column;
+  gap:clamp(14px,3vh,28px);
+}
+
+.fx-title{
+  font-family:"Archivo Black","Archivo",sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:-.02em;
+  font-size:clamp(1.4rem,4vw,2.6rem);
+  color:var(--ink);
+  margin:0;
+}
+.fx-sub{
+  margin:.35rem 0 0;
+  font-weight:600;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  font-size:clamp(.7rem,1.6vw,.9rem);
+  color:var(--ink-2);
+}
+.fx-sub code{
+  font-family:inherit;
+  background:rgba(255,255,255,.4);
+  padding:.05em .45em;
+  border-radius:.4em;
+}
+
+.fx-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin-top:clamp(10px,2vh,18px);
+}
+.fx-btn{
+  font:inherit;
+  font-weight:700;
+  letter-spacing:.03em;
+  color:var(--ink);
+  padding:.5em 1em;
+  border-radius:999px;
+  border:1.5px solid rgba(28,43,77,.25);
+  background:rgba(255,255,255,.5);
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .08s ease;
+}
+.fx-btn:hover{background:rgba(255,255,255,.85);}
+.fx-btn:active{transform:translateY(1px);}
+.fx-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+.fx-btn[aria-pressed="true"]{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+.fx-btn--toggle{margin-left:auto;}
+
+/* ----- palco ----- */
+.fx-stage{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  max-height:min(70vh,640px);
+  border-radius:24px;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(120% 120% at 20% 0%, rgba(255,255,255,.14), rgba(255,255,255,0) 60%),
+    linear-gradient(160deg, rgba(9,15,32,.62), rgba(9,15,32,.30));
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    0 30px 60px -22px rgba(6,10,25,.55);
+}
+
+.fx-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.fx-sprite{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:120px;
+  height:auto;
+  will-change:transform,opacity;
+  user-select:none;
+  -webkit-user-drag:none;
+  filter:drop-shadow(0 10px 20px rgba(6,10,25,.35));
+}
+
+/* ----- reveal: grade que surge ----- */
+.fx-layer--reveal{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:14px;
+  padding:clamp(16px,4%,40px);
+  align-content:center;
+  overflow:auto;
+}
+.fx-reveal-cell{
+  position:relative;
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.fx-reveal-cell .fx-sprite{
+  position:static;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.fx-layer--reveal[data-variant="slide"] .fx-reveal-cell{transform:translateY(42px);}
+.fx-layer--reveal[data-variant="zoom"]  .fx-reveal-cell{transform:scale(.55);}
+.fx-reveal-cell.is-in{
+  opacity:1;
+  transform:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .fx-reveal-cell{opacity:1;transform:none;transition:none;}
+}
+
+@media (max-width:1000px){
+  .fx-btn--toggle{margin-left:0;}
+  .fx-stage{aspect-ratio:4/3;}
+}

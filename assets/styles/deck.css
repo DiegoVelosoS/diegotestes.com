@@ -1,0 +1,37 @@
+/* Palco 3D e a grade que segura as cartas. */
+.stage{
+  position:relative;
+  flex:1 1 58%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:visible;
+  perspective:1600px;
+  perspective-origin:60% 40%;
+}
+.deck{
+  --cw:clamp(104px, min(14.5vw, 23vh), 210px);
+  --gap:calc(var(--cw) * 0.16);
+  display:grid;
+  grid-template-columns:repeat(3, var(--cw));
+  gap:var(--gap);
+  transform-style:preserve-3d;
+  transform:translateX(-4%) rotateX(20deg) rotateY(-18deg) rotate(-2.5deg);
+}
+
+/* sombra de "chão" sob o baralho: estreita e inclinada para acompanhar
+   o giro das cartas, dando a sensação de que elas repousam numa superfície */
+.floor-shadow{
+  position:absolute;
+  left:52%;
+  bottom:clamp(-26px,-3vh,-12px);
+  width:32%;
+  max-width:380px;
+  height:clamp(44px,7vh,64px);
+  background:radial-gradient(closest-side, rgba(8,16,36,.55), rgba(8,16,36,0) 72%);
+  transform:translateX(-50%) rotate(-4deg) scaleY(.4);
+  filter:blur(8px);
+  pointer-events:none;
+  z-index:-1;
+}

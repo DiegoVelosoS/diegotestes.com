@@ -1,0 +1,28 @@
+/* ---------- RETRATO / TELAS ESTREITAS ---------- */
+@media (max-width:1000px){
+  body{height:auto;min-height:100dvh;overflow:visible;}
+  .page{
+    flex-direction:column;
+    justify-content:center;
+    gap:clamp(12px,3vh,28px);
+    padding:clamp(14px,4vw,32px);
+    overflow:visible;
+  }
+  .hero{flex:0 0 auto;max-width:none;gap:.35rem;}
+  .title{font-size:clamp(1.4rem, min(7vw, 6.5vh), 2.9rem);}
+  .stage{flex:1 1 auto;height:auto;width:100%;perspective:none;}
+  .deck{
+    --cw:min(43vw, 13.5vh);
+    grid-template-columns:repeat(2, var(--cw));
+    justify-content:center;
+    transform:none;
+  }
+  .card{transform:none !important;aspect-ratio:3/4;}
+}
+@media (max-width:1000px) and (orientation:landscape){
+  .page{flex-direction:row;}
+  .hero{flex:1 1 38%;}
+  .stage{height:100%;}
+  .deck{--cw:min(19vw, 24vh);grid-template-columns:repeat(3, var(--cw));}
+  .card{aspect-ratio:5/7;}
+}
