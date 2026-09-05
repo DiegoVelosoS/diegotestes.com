@@ -4,6 +4,7 @@ import { OFFSETS } from "./data/offsets.js";
 import { createCard } from "./components/card.js";
 import { initAnimations } from "./animations/index.js";
 import { initCloudsBackground } from "./background/clouds.js";
+import { initFishingGif } from "./background/fishing-gif.js";
 
 const deck = document.getElementById("deck");
 if (deck){
@@ -21,3 +22,6 @@ if (bgClouds) initCloudsBackground(bgClouds);
 
 const bgCloudsBottom = document.getElementById("bgCloudsBottom");
 if (bgCloudsBottom) initCloudsBackground(bgCloudsBottom);
+
+const fishingGif = document.getElementById("fishingGif");
+if (fishingGif) initFishingGif(fishingGif);

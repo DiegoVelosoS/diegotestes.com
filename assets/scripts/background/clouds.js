@@ -19,6 +19,8 @@ export async function initCloudsBackground(container){
     rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
   });
 
+  anim.setSpeed(0.5 / 3);
+
   if (reduceMotion) anim.goToAndStop(0, true);
 
   const onVisibility = () => {
