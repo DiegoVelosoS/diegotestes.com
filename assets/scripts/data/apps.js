@@ -1,20 +1,24 @@
 /* =======================================================================
    👉 EDITE ESTA LISTA com as aplicações hospedadas na VPS (diegotestes.com).
       name   : nome da carta
+      type   : texto curto com o tipo da aplicação, no rodapé do modo organizado (opcional; padrão = name)
       url    : link aberto ao clicar (tela de entrada da aplicação)
-      accent : cor da carta (opcional; padrão azul)
+      accent : cor principal da carta — barra do título (opcional; padrão azul)
+      accent2: cor da moldura (opcional; padrão = accent)
+      accent3: cor dos detalhes — losango e selo (opcional; padrão = accent2)
       shot   : URL usada só para o print ao vivo (opcional; padrão = url)
+      logo   : logomarca exibida na "arte" (fundo claro, imagem inteira)
+      video  : vídeo exibido atrás da logo no hover (opcional; padrão assets/videos/vortex.mp4)
+      hoverFx: animação da arte no hover do modo organizado (eleitores | coleta | seadi | louvor | zeerr | expoferr)
       img    : caminho de uma imagem fixa p/ a "arte" (ex.: "assets/images/foo.png")
       noshot : true  -> não tenta screenshot, mostra só a inicial do app
-      type   : texto da linha de tipo (padrão "Aplicação · Homologação")
-      flavor : texto em itálico no rodapé da carta
       badge  : selo no canto (padrão "HML")
    ======================================================================= */
 export const APPS = [
-  { name: "Eleitores",     url: "https://eleitores.diegotestes.com",     accent: "#2f6fc4", img: "assets/images/eleitores.png" },
-  { name: "Coleta",        url: "https://coleta.diegotestes.com",        accent: "#0d9488", img: "assets/images/coleta.png" },
-  { name: "ProgramasEADI", url: "https://programaseadi.diegotestes.com", accent: "#6d28d9", img: "assets/images/planoseadi.png" },
-  { name: "Zeerr",         url: "https://zeerr.diegotestes.com",         accent: "#18181b", img: "assets/images/mapas-interativos.png" },
-  { name: "Louvor",        url: "https://louvor.diegotestes.com",        accent: "#e11d48", img: "assets/images/louvor.png" },
-  { name: "ExpoferrQuiz",  url: "https://expoferrquiz.diegotestes.com",  accent: "#0a8f47", img: "assets/images/expoferrquiz.png" },
+  { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", accent2: "#13284f", logo: "assets/images/logos/eleitores.svg", hoverFx: "eleitores" },
+  { name: "Coleta SEADI",   type: "Coleta de dados de campo.", url: "https://coleta.diegotestes.com",        accent: "#2d6a4f", logo: "assets/images/logos/coleta.svg", hoverFx: "coleta" },
+  { name: "ProgramasEADI", type: "Painel de planejamento.", url: "https://programaseadi.diegotestes.com", accent: "#0c5143", accent2: "#0b3b4b", accent3: "#9ce4b5", logo: "assets/images/logos/programaseadi.svg", hoverFx: "seadi" },
+  { name: "Mapas Interativos", type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#3d9a43", accent2: "#2aa3e8", accent3: "#d7262c", logo: "assets/images/logos/zeerr.svg", hoverFx: "zeerr" },
+  { name: "Louvor",        type: "Escala do grupo de louvor da igreja.", url: "https://louvor.diegotestes.com",        accent: "#14305b", logo: "assets/images/logos/louvor.png", hoverFx: "louvor" },
+  { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", hoverFx: "expoferr" },
 ];

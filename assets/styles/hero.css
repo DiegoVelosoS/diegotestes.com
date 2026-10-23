@@ -12,10 +12,10 @@
 .brand .avatar{
   width:2.1em;height:2.1em;border-radius:50%;
   border:2px solid rgba(255,255,255,.8);
-  box-shadow:0 .3em .7em rgba(15,32,70,.35);
+  box-shadow:0 .3em .7em rgba(28,40,44,.35);
   background:#dbe7fb;object-fit:cover;flex:none;
 }
-.brand .who{font-weight:700;font-size:1em;color:var(--ink);}
+.brand .who{font-weight:700;font-size:1em;color:var(--ink);text-shadow:var(--ink-shadow);}
 .brand:hover .who{text-decoration:underline;}
 
 .title{
@@ -26,6 +26,7 @@
   letter-spacing:-.02em;
   text-transform:uppercase;
   color:var(--ink);
+  text-shadow:0 0 .6em rgba(255,170,110,.35), var(--ink-shadow);
   margin:0;
 }
 .subtitle{
@@ -34,6 +35,7 @@
   letter-spacing:.06em;
   text-transform:uppercase;
   color:var(--ink-2);
+  text-shadow:var(--ink-shadow);
   margin:0;
 }
 .site-footer{
@@ -46,6 +48,7 @@
   font-size:clamp(.66rem, 1.2vw, .8rem);
   letter-spacing:.05em;
   color:var(--ink);
-  opacity:.5;
+  opacity:.7;
+  text-shadow:var(--ink-shadow);
   margin:0;
 }

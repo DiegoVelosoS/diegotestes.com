@@ -12,14 +12,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles/index.css">
 </head>
-<body>
-  <div class="bg-clouds" id="bgClouds" aria-hidden="true"></div>
-  <div class="bg-clouds bg-clouds--bottom" id="bgCloudsBottom" aria-hidden="true"></div>
+<body class="layout-org">
+  <video class="bg-video" id="bgVideo" src="assets/videos/portal.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 
-  <div class="fishing-gif" id="fishingGif" aria-hidden="true">
-    <img src="assets/images/pescando.gif" alt="">
-    <canvas></canvas>
-  </div>
+  <button class="layout-switch" id="layoutSwitch" type="button" role="switch" aria-checked="true" aria-label="Modo organizado" title="Alternar layout">
+    <span class="opt opt-cards" aria-hidden="true">
+      <svg viewBox="3 3.75 25.5 25.5"><g transform="translate(0,32) scale(0.1,-0.1)" fill="currentColor"><path d="M73 239 c-24 -17 -43 -36 -43 -42 0 -18 89 -147 106 -154 8 -3 20 -1 27 5 7 6 37 12 67 14 l55 3 0 100 0 100 -85 2 c-79 1 -88 -1 -127 -28z m69 -84 c2 -52 1 -95 -2 -95 -5 0 -81 114 -88 131 -3 7 66 59 80 59 3 0 8 -43 10 -95z m128 10 l0 -85 -55 0 -55 0 0 85 0 85 55 0 55 0 0 -85z"/></g></svg>
+    </span>
+    <span class="opt opt-grid" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+    </span>
+  </button>
 
   <main class="page">
     <section class="hero">
@@ -27,8 +30,8 @@
         <img class="avatar" src="https://github.com/DiegoVelosoS.png?size=140" alt="Avatar de DiegoVelosoS">
         <span class="who">DiegoVelosoS</span>
       </a>
-      <h1 class="title">Aplicações</h1>
-      <p class="subtitle">Área de homologações</p>
+      <h1 class="title"><span class="title-mark">App<span class="title-bar" aria-hidden="true"></span></span>lications</h1>
+      <p class="subtitle">Staging environment</p>
     </section>
 
     <section class="stage">

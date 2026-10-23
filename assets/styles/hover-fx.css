@@ -1,0 +1,338 @@
+/* Animações da "arte" no hover do modo organizado (components/hover-fx.js).
+   Miniaturas das telas de entrada de cada projeto. Medidas em cqw (1cqw = 1% da largura
+   da arte; a altura é 75cqw). O estado final é o estilo base; as animações partem dele,
+   então sem movimento (prefers-reduced-motion) a tela aparece já pronta.
+   Como a camada só existe (display) durante o hover, cada novo hover reinicia a animação. */
+.card .hover-fx{display:none;}
+.layout-org .card .art{container-type:inline-size;}
+.layout-org .card:hover .hover-fx,
+.layout-org .card:focus-visible .hover-fx{
+  display:block;
+  position:absolute;inset:0;
+  z-index:2;
+  overflow:hidden;
+  border-radius:inherit;
+  line-height:1.2;
+  text-transform:none;
+  letter-spacing:0;
+  animation:hfx-surge .3s ease-out both;
+}
+.hover-fx span, .hover-fx b, .hover-fx small{display:block;}
+.hover-fx svg{display:block;}
+@keyframes hfx-surge{from{opacity:0;}}
+
+/* ===================== ELEITORES — lado esquerdo do login ===================== */
+.fx-eleitores{
+  background:#0b1a3a;
+  color:#fff;
+  font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+.fx-eleitores .el-circulo{
+  position:absolute;
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:50%;
+}
+.fx-eleitores .el-c1{top:-15cqw;left:-10cqw;width:118cqw;height:118cqw;}
+.fx-eleitores .el-c2{top:-7.5cqw;left:-5cqw;width:88cqw;height:88cqw;}
+.fx-eleitores .el-marca{
+  position:absolute;top:5cqw;left:6cqw;
+  display:flex;align-items:center;gap:2.2cqw;
+}
+.fx-eleitores .el-icone{
+  width:8cqw;height:8cqw;
+  display:flex;align-items:center;justify-content:center;
+  border:.45cqw solid #e5973e;
+  border-radius:50%;
+  color:#e5973e;
+}
+.fx-eleitores .el-icone svg{width:4.4cqw;height:4.4cqw;}
+.fx-eleitores .el-nome b{font-size:3.3cqw;font-weight:900;line-height:1.08;letter-spacing:.03em;}
+.fx-eleitores .el-nome .laranja{color:#e5973e;}
+.fx-eleitores .el-nome small{margin-top:.3cqw;font-size:1.6cqw;font-weight:700;letter-spacing:.14em;color:#e5973e;}
+.fx-eleitores .el-corpo{
+  position:absolute;left:6cqw;right:6cqw;bottom:5cqw;
+  animation:el-fade-in-up .6s ease-out both;
+}
+.fx-eleitores .el-titulo{
+  max-width:80cqw;margin-bottom:4cqw;
+  font-size:5cqw;font-weight:700;line-height:1.15;
+}
+.fx-eleitores .el-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin-bottom:4cqw;}
+.fx-eleitores .el-stat{
+  padding:2cqw;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:2.2cqw;
+  background:rgba(255,255,255,.05);
+}
+.fx-eleitores .el-stat svg{width:2.8cqw;height:2.8cqw;margin-bottom:.8cqw;color:#9ca3af;}
+.fx-eleitores .el-stat svg.roxo{color:#c084fc;}
+.fx-eleitores .el-stat svg.azul{color:#60a5fa;}
+.fx-eleitores .el-stat b{font-size:5cqw;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;}
+.fx-eleitores .el-stat small{margin-top:.5cqw;font-size:1.45cqw;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af;white-space:nowrap;}
+.fx-eleitores .el-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:1.4cqw;
+  font-size:1.9cqw;color:#9ca3af;
+}
+.fx-eleitores .el-meta b{color:#fff;font-weight:700;}
+.fx-eleitores .el-barra{height:1cqw;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.1);}
+.fx-eleitores .el-barra span{height:100%;width:0;border-radius:99px;background:#e5973e;transition:width .5s linear;}
+@keyframes el-fade-in-up{from{opacity:0;transform:translateY(4cqw);}}
+
+/* ===================== COLETA — cabeçalho abre e a folha cai ===================== */
+.fx-coleta{
+  --verde:#1b4332;
+  --linha-cor:rgba(33,29,30,.7);
+  background:
+    radial-gradient(circle at 18% 78%, rgba(46,125,79,.10), transparent 30%),
+    radial-gradient(circle at 84% 30%, rgba(46,125,79,.08), transparent 26%),
+    #f1f5f2;
+  font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+/* banner: as duas metades são a mesma imagem recortada na linha (53% da largura) */
+.fx-coleta .cl-banner{
+  --divisor:.53;
+  position:absolute;top:6cqw;left:15cqw;
+  width:70cqw;aspect-ratio:840/119;
+}
+.fx-coleta .cl-parte{position:absolute;top:0;bottom:0;overflow:hidden;}
+.fx-coleta .cl-parte img{position:absolute;top:0;height:auto;width:calc(100% / var(--divisor));max-width:none;}
+.fx-coleta .cl-esq{left:0;width:calc(var(--divisor) * 100%);animation:cl-abre-esq .8s cubic-bezier(.65,0,.35,1) .5s both;}
+.fx-coleta .cl-esq img{left:0;}
+.fx-coleta .cl-dir{left:calc(var(--divisor) * 100%);right:0;animation:cl-abre-dir .8s cubic-bezier(.65,0,.35,1) .5s both;}
+.fx-coleta .cl-dir img{right:0;width:calc(100% / (1 - var(--divisor)));}
+.fx-coleta .cl-linha{
+  position:absolute;top:0;bottom:0;
+  left:calc(var(--divisor) * 100%);
+  width:1px;
+  transform:translateX(-50%);
+  background:var(--linha-cor);
+  opacity:0;
+  animation:cl-linha-cresce .5s cubic-bezier(.65,0,.35,1) both, cl-linha-some .3s ease-out 1.3s backwards;
+}
+.fx-coleta .cl-card{
+  position:absolute;top:24cqw;left:16cqw;right:16cqw;bottom:-8cqw;
+  display:flex;flex-direction:column;align-items:center;
+  padding:2cqw 6cqw 0;
+  border:1px solid rgba(27,67,50,.08);
+  border-radius:4cqw;
+  background:#fff;
+  box-shadow:0 2cqw 6cqw rgba(16,40,28,.10);
+  animation:cl-card-surge .7s ease-out 1.9s both;
+}
+/* a folha: o span desce e o svg balança/gira por cima, terminando no lugar do card.
+   --dx/--dy = distância do lugar da folha até a ponta de baixo da linha do cabeçalho */
+.fx-coleta .cl-folha{
+  --dx:2.1cqw;
+  --dy:-15.1cqw;
+  animation:cl-folha-desce 2s cubic-bezier(.35,.05,.55,1) 1.3s both;
+}
+.fx-coleta .cl-folha svg{
+  width:10cqw;height:10cqw;
+  fill:var(--verde);
+  animation:cl-folha-balanca 2s ease-in-out 1.3s both, cl-folha-cresce 2s cubic-bezier(.3,.2,.4,1) 1.3s both;
+}
+.fx-coleta .cl-nome{margin-top:.6cqw;font-size:6cqw;font-weight:700;color:var(--verde);animation:cl-surge .5s cubic-bezier(.22,1,.36,1) 3.1s both;}
+.fx-coleta .cl-sub{margin:.6cqw 0 3.4cqw;font-size:2.3cqw;color:#5c6b62;text-align:center;animation:cl-surge .5s cubic-bezier(.22,1,.36,1) 3.3s both;}
+.fx-coleta .cl-campos{width:100%;display:flex;flex-direction:column;gap:2.4cqw;animation:cl-surge .6s cubic-bezier(.22,1,.36,1) 3.45s both;}
+.fx-coleta .cl-campos i{height:5.4cqw;border:1px solid rgba(27,67,50,.12);border-radius:1.6cqw;background:#f1f5f2;}
+
+@keyframes cl-linha-cresce{from{transform:translateX(-50%) scaleY(0);opacity:1;}to{opacity:1;}}
+@keyframes cl-linha-some{from{opacity:1;}to{opacity:0;}}
+@keyframes cl-abre-esq{from{clip-path:inset(0 0 0 100%);}to{clip-path:inset(0);}}
+@keyframes cl-abre-dir{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0);}}
+@keyframes cl-surge{from{opacity:0;transform:translateY(-2.6cqw);}}
+@keyframes cl-card-surge{from{background-color:transparent;border-color:transparent;box-shadow:none;}}
+@keyframes cl-folha-desce{
+  0%{opacity:0;translate:0 var(--dy);}
+  10%{opacity:1;}
+  100%{opacity:1;translate:0 0;}
+}
+@keyframes cl-folha-balanca{
+  0%{translate:var(--dx) 0;rotate:0deg;}
+  22%{translate:calc(var(--dx) * .75 + 5.6cqw) 0;rotate:22deg;}
+  46%{translate:calc(var(--dx) * .48 - 4.5cqw) 0;rotate:-18deg;}
+  68%{translate:calc(var(--dx) * .22 + 2.6cqw) 0;rotate:11deg;}
+  86%{translate:calc(var(--dx) * .06 - .9cqw) 0;rotate:-4deg;}
+  100%{translate:0 0;rotate:0deg;}
+}
+@keyframes cl-folha-cresce{from{scale:.2;}}
+
+/* ===================== PROGRAMA SEADI — emblema das boas-vindas ===================== */
+.fx-seadi{
+  background:linear-gradient(110deg, rgba(5,35,59,.97), rgba(12,81,67,.95)), #0b3b4b;
+  color:#d6f1df;
+  animation:hfx-surge .32s ease-out both !important;
+}
+.fx-seadi .sd-cena{position:absolute;inset:0;animation:sd-entra .52s cubic-bezier(.22,1,.36,1) both;}
+.fx-seadi .sd-circulo{position:absolute;border:1px solid rgba(190,231,207,.17);border-radius:50%;}
+.fx-seadi .sd-c1{top:-31cqw;right:-12cqw;width:92cqw;height:92cqw;}
+.fx-seadi .sd-c2{right:21cqw;bottom:-52cqw;width:105cqw;height:105cqw;}
+.fx-seadi .sd-emblema{
+  position:absolute;top:50%;left:50%;
+  width:30cqw;height:30cqw;
+  margin:-15cqw 0 0 -15cqw;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(215,242,224,.32);
+  border-radius:50%;
+  background:rgba(223,247,231,.1);
+  box-shadow:0 0 0 3cqw rgba(214,241,223,.04), 0 5.5cqw 11cqw rgba(0,0,0,.16);
+}
+.fx-seadi .sd-emblema svg{width:11.5cqw;height:11.5cqw;}
+.fx-seadi .sd-orbita{
+  position:absolute;inset:-3.4cqw;
+  border:1px dashed rgba(216,243,225,.33);
+  border-radius:50%;
+  animation:sd-orbita 14s linear infinite;
+}
+.fx-seadi .sd-orbita::after{
+  content:"";
+  position:absolute;top:2.4cqw;left:4cqw;
+  width:2.4cqw;height:2.4cqw;
+  border-radius:50%;
+  background:#c7e9d2;
+  box-shadow:0 0 4.4cqw rgba(199,233,210,.72);
+}
+@keyframes sd-entra{from{opacity:0;transform:translateY(8cqw) scale(.965);}}
+@keyframes sd-orbita{to{transform:rotate(360deg);}}
+
+/* ===================== LOUVOR — logomarca + nome sobre o fundo do login =====================
+   Fundo igual ao do login do projeto: azul de marca + luzes.svg + três círculos de luz
+   passeando. A logo entra enorme (ocupando a arte) e encolhe até o lugar; o nome surge
+   pequeno logo abaixo dela e cresce até o tamanho final. Enquanto isso surge atrás dos
+   dois o card branco do login (widget), com o mesmo brilho azul em volta. O "P" da logo
+   é vazado: mostra o azul do fundo no começo e o branco do card no fim. */
+.fx-louvor{
+  background:#1e73be url("../images/logos/louvor-luzes.svg") center / cover no-repeat;
+  font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.fx-louvor .lv-luz{
+  position:absolute;top:50%;left:50%;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.38) 0%, rgba(255,255,255,.14) 35%, transparent 70%);
+  pointer-events:none;
+}
+.fx-louvor .lv-l1{width:120cqw;height:120cqw;animation:lv-luz-1 18s ease-in-out -2s infinite;}
+.fx-louvor .lv-l2{width:140cqw;height:140cqw;animation:lv-luz-2 18s ease-in-out -8s infinite;}
+.fx-louvor .lv-l3{width:100cqw;height:100cqw;animation:lv-luz-3 18s ease-in-out -14s infinite;}
+.fx-louvor .lv-widget{
+  position:absolute;left:50%;top:41.5cqw;
+  width:80cqw;height:50cqw;
+  box-sizing:border-box;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:3.6cqw;
+  background:#fff;
+  box-shadow:0 1cqw 3cqw rgba(0,0,0,.12), 0 0 12cqw color-mix(in srgb, #00bfff 35%, transparent);
+  animation:lv-widget-surge 2.2s cubic-bezier(.45,0,.2,1) both;
+}
+.fx-louvor .lv-logo{
+  position:absolute;left:50%;top:34cqw;
+  width:17cqw;height:17cqw;
+  object-fit:contain;
+  transform:translate(-50%,-50%);
+  animation:lv-logo-encolhe 2.2s cubic-bezier(.45,0,.2,1) both;
+}
+.fx-louvor .lv-nome{
+  position:absolute;left:0;right:0;top:53cqw;
+  font-size:7.4cqw;font-weight:800;line-height:1;
+  text-align:center;white-space:nowrap;
+  color:#122f5c;
+  animation:lv-nome-cresce 2.2s cubic-bezier(.45,0,.2,1) both;
+}
+@keyframes lv-logo-encolhe{
+  0%{transform:translate(-50%,-44%) scale(4);}
+  45%{transform:translate(-50%,-38%) scale(1.75);}
+  100%{transform:translate(-50%,-50%) scale(1);}
+}
+@keyframes lv-widget-surge{
+  0%, 40%{opacity:0;transform:translate(-50%,-50%) scale(.82);}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+}
+@keyframes lv-nome-cresce{
+  0%, 25%{opacity:0;transform:translateY(3cqw) scale(.45);}
+  45%{opacity:1;transform:translateY(3cqw) scale(.5);}
+  100%{opacity:1;transform:none;}
+}
+@keyframes lv-luz-1{
+  0%,100%{transform:translate(-70%,-60%);} 25%{transform:translate(-30%,-78%);}
+  50%{transform:translate(-18%,-32%);} 75%{transform:translate(-62%,-18%);}
+}
+@keyframes lv-luz-2{
+  0%,100%{transform:translate(-78%,-68%);} 30%{transform:translate(-22%,-74%);}
+  55%{transform:translate(-12%,-22%);} 80%{transform:translate(-58%,-12%);}
+}
+@keyframes lv-luz-3{
+  0%,100%{transform:translate(-38%,-82%);} 20%{transform:translate(-76%,-48%);}
+  50%{transform:translate(-52%,-14%);} 75%{transform:translate(-18%,-42%);}
+}
+
+/* ===================== ZEERR — logo ZEE Roraima se montando =====================
+   zeerr-anim.svg (do "logo ZEERR.svg"), em 4 tempos como na referência:
+   1 o mapa gira e se abre a partir de uma fatia · 2 as faixas surgem da direita (as curvas
+   primeiro) e envolvem o mapa · 3 "ZEE" e "RORAIMA" são revelados da esquerda p/ direita. */
+.fx-zeerr{background:#fff;}
+.fx-zeerr .zr-logo{
+  position:absolute;left:6cqw;top:14.85cqw;
+  width:88cqw;height:auto;
+  overflow:visible;
+}
+.fx-zeerr .zr-mapa{
+  transform-box:fill-box;transform-origin:50% 50%;
+  animation:zr-gira .75s cubic-bezier(.3,.7,.35,1) both;
+}
+.fx-zeerr .zr-faixas > g{animation:zr-envolve .8s cubic-bezier(.45,0,.2,1) both;}
+.fx-zeerr .zr-f1{animation-delay:.6s !important;}
+.fx-zeerr .zr-f2{animation-delay:.72s !important;}
+.fx-zeerr .zr-f3{animation-delay:.84s !important;}
+.fx-zeerr .zr-zee{animation:zr-revela .6s cubic-bezier(.3,.6,.3,1) 1.3s both;}
+.fx-zeerr .zr-roraima{animation:zr-revela .6s cubic-bezier(.3,.6,.3,1) 1.45s both;}
+
+@keyframes zr-gira{
+  0%{opacity:0;transform:scaleX(.06);}
+  12%{opacity:1;}
+  100%{transform:none;}
+}
+@keyframes zr-envolve{from{clip-path:inset(0 0 0 100%);}to{clip-path:inset(0);}}
+@keyframes zr-revela{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0);}}
+
+/* ===================== EXPOFERR QUIZ — fundo da tela inicial do quiz =====================
+   Igual ao Quiz-ZEE (css/style.css): céu em degradê, cena da fazenda com 70% de opacidade,
+   selo do evento no centro e os raios de luz (raio-luz.png, 175% do selo, 55% de opacidade)
+   girando atrás dele, uma volta a cada 18s. O selo entra com um leve "pop". */
+.fx-expoferr{
+  background:linear-gradient(180deg, #cdeefb 0%, #f4fbfd 65%, #eaf6fb 100%);
+}
+.fx-expoferr .ex-cena{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:.7;
+}
+.fx-expoferr .ex-selo{
+  position:absolute;left:50%;top:38cqw;
+  width:76cqw;aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+}
+.fx-expoferr .ex-raios{
+  position:absolute;top:50%;left:50%;
+  width:175%;height:175%;max-width:none;
+  opacity:.55;
+  animation:ex-raios 18s linear infinite;
+}
+.fx-expoferr .ex-badge{
+  position:relative;z-index:1;
+  width:100%;
+  animation:ex-pop .6s cubic-bezier(.34,1.56,.64,1) .1s both;
+}
+@keyframes ex-raios{
+  from{transform:translate(-50%,-50%) rotate(0deg);}
+  to{transform:translate(-50%,-50%) rotate(360deg);}
+}
+@keyframes ex-pop{from{opacity:0;transform:scale(.85);}}
+
+@media (prefers-reduced-motion: reduce){
+  .hover-fx, .hover-fx *, .hover-fx *::after{animation:none !important;}
+  .fx-coleta .cl-linha{opacity:0;}
+}

@@ -1,0 +1,15 @@
+/* ---------- Animação "entrar no portal" (assets/scripts/animations/portal-entry.js) ---------- */
+.card.portal-gone{
+  visibility:hidden;
+}
+
+.portal-ghost{
+  position:fixed;
+  z-index:50;
+  margin:0;
+  pointer-events:none;
+  --tx:0px;--ty:0px;--tz:0px;
+  transform-origin:50% 50%;
+  will-change:transform, opacity, filter;
+}
+

@@ -1,5 +1,6 @@
 /* Design tokens — cores e valores globais reutilizados nas demais folhas. */
 :root{
-  --ink:#1c2b4d;
-  --ink-2:#2b3d66;
+  --ink:#fbeee2;        /* creme quente, puxado da névoa iluminada */
+  --ink-2:#c5d6bd;      /* sálvia clara, puxada do verde da névoa (combina com o laranja do portal) */
+  --ink-shadow:0 .06em .5em rgba(28,40,44,.45);
 }

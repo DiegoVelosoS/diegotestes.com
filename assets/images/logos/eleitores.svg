@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200">
+  <circle cx="120" cy="64" r="50" fill="#0B1A3A" stroke="#E5973E" stroke-width="5"/>
+  <path fill="none" stroke="#E5973E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(92 36) scale(2.33)" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+  <g font-family="Segoe UI, Roboto, Arial, sans-serif" font-weight="900" text-anchor="middle">
+    <text x="120" y="152" font-size="24" fill="#0B1A3A">ELEITORES</text>
+    <text x="120" y="178" font-size="24" fill="#E5973E">CONECTADOS</text>
+    <text x="120" y="194" font-size="10" font-weight="700" letter-spacing="2.5" fill="#E5973E">CADA VOZ IMPORTA</text>
+  </g>
+</svg>

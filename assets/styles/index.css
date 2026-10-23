@@ -6,6 +6,7 @@
 @import "./hero.css";
 @import "./deck.css";
 @import "./card.css";
-@import "./animations.css";
-@import "./fishing-gif.css";
+@import "./portal.css";
 @import "./responsive.css";
+@import "./layout-switch.css";
+@import "./hover-fx.css";

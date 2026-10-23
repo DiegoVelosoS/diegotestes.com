@@ -1,0 +1,261 @@
+/* Switch de layout (canto superior direito) + modo organizado (body.layout-org). */
+.layout-switch{
+  position:fixed;
+  top:clamp(10px,2.2vmin,22px);
+  right:clamp(10px,2.2vmin,22px);
+  z-index:40;
+  display:flex;
+  align-items:center;
+  padding:3px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  /* vidro: fundo quase transparente + desfoque do que está atrás */
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  backdrop-filter:blur(14px) saturate(160%);
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 4px 14px rgba(4,8,14,.18);
+  cursor:pointer;
+  color:var(--ink);
+  opacity:.75;
+  transition:opacity .3s ease, background .3s ease;
+}
+.layout-switch:hover,
+.layout-switch:focus-visible{opacity:1;background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.05));}
+/* pílula de vidro mais clara que desliza para baixo do ícone ativo */
+.layout-switch::before{
+  content:"";
+  position:absolute;
+  top:3px;left:3px;
+  width:30px;height:26px;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), inset 0 0 0 1px rgba(255,255,255,.12);
+  transition:transform .3s cubic-bezier(.22,.61,.36,1);
+}
+.layout-switch[aria-checked="true"]::before{transform:translateX(30px);}
+.layout-switch .opt{
+  position:relative;
+  width:30px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  opacity:.45;
+  transition:opacity .3s ease;
+}
+.layout-switch .opt svg{width:15px;height:15px;display:block;}
+.layout-switch .opt-cards svg{width:13px;height:13px;}
+.layout-switch[aria-checked="false"] .opt-cards,
+.layout-switch[aria-checked="true"] .opt-grid{opacity:1;}
+.layout-switch:focus{outline:none;}
+.layout-switch:focus-visible{box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 2px rgba(255,255,255,.35);}
+
+/* ===================== TRANSIÇÃO ENTRE OS MODOS =====================
+   layout-switch.js troca o layout dentro de document.startViewTransition. Cada carta tem
+   view-transition-name próprio (main.js: card-0, card-1...), então o navegador desloca e
+   redimensiona cada uma do lugar no deck 3D até o lugar na grade (e vice-versa), em
+   cascata. Título, subtítulo e perfil também se deslocam; o fundo só faz o crossfade.
+   O switch fica fora da transição para a pílula deslizar ao vivo. */
+.brand{view-transition-name:hero-brand;}
+.title{view-transition-name:hero-title;}
+.subtitle{view-transition-name:hero-subtitle;}
+.layout-switch{view-transition-name:layout-switch;}
+
+::view-transition-group(*){
+  animation-duration:.75s;
+  animation-timing-function:cubic-bezier(.65,0,.25,1);
+}
+::view-transition-old(*),
+::view-transition-new(*){
+  animation-duration:.45s;
+  animation-timing-function:ease;
+}
+/* conteúdo diferente nos dois modos (proporção da carta, rodapé): mostra a imagem inteira
+   esticando junto com o grupo em vez de cortar */
+::view-transition-old(*),
+::view-transition-new(*){height:100%;object-fit:fill;}
+::view-transition-group(root){animation-duration:.5s;}
+::view-transition-group(layout-switch),
+::view-transition-old(layout-switch),
+::view-transition-new(layout-switch){animation:none;}
+::view-transition-old(layout-switch){display:none;}
+
+/* arte (quadro branco da logo): em vez de esticar com a carta, se retrai ao sair do
+   layout antigo e se expande já no lugar novo, acompanhando o deslocamento da carta.
+   A cascata (animation-delay por carta/arte) é gerada em main.js. */
+::view-transition-old(*.card-art){
+  height:100%;object-fit:cover;
+  animation:art-retrai .75s cubic-bezier(.65,0,.25,1) both;
+}
+::view-transition-new(*.card-art){
+  height:100%;object-fit:cover;
+  animation:art-expande .75s cubic-bezier(.65,0,.25,1) both;
+}
+@keyframes art-retrai{
+  0%{opacity:1;transform:scale(1);border-radius:0;}
+  45%{opacity:0;transform:scale(.35);border-radius:50%;}
+  100%{opacity:0;transform:scale(.35);}
+}
+@keyframes art-expande{
+  0%, 50%{opacity:0;transform:scale(.35);border-radius:50%;}
+  100%{opacity:1;transform:scale(1);border-radius:0;}
+}
+::view-transition-group(hero-subtitle),::view-transition-old(hero-subtitle),::view-transition-new(hero-subtitle){animation-delay:60ms;}
+
+/* barra laranja do título: só existe no modo organizado. Fica parada no lugar, atrás do
+   texto que se transforma, e entra/sai como um neon da mesma cor (sem mudar o tom):
+   ao aparecer o brilho difuso se concentra na barra; ao sumir é o mesmo efeito invertido. */
+::view-transition-group(hero-title){z-index:2;}
+::view-transition-group(title-bar){z-index:1;overflow:visible;}
+::view-transition-new(title-bar){
+  animation:title-bar-neon .7s cubic-bezier(.3,0,.2,1) both;
+}
+::view-transition-old(title-bar){
+  animation:title-bar-neon .7s cubic-bezier(.8,0,.7,1) both reverse;
+}
+@keyframes title-bar-neon{
+  0%{
+    opacity:0;transform:scaleX(1.08) scaleY(3.5);
+    filter:blur(10px) drop-shadow(0 0 30px rgba(229,115,62,.6)) drop-shadow(0 0 60px rgba(229,115,62,.35));
+  }
+  75%{
+    opacity:1;transform:scaleX(1.02) scaleY(1.6);
+    filter:blur(.5px) drop-shadow(0 0 8px rgba(229,115,62,.9)) drop-shadow(0 0 22px rgba(229,115,62,.7));
+  }
+  100%{
+    opacity:1;transform:scaleX(1) scaleY(1);
+    filter:blur(0) drop-shadow(0 0 0 rgba(229,115,62,0));
+  }
+}
+
+/* rodapé de informações só existe no modo organizado */
+.card .info{display:none;}
+
+/* ===================== MODO ORGANIZADO ===================== */
+.layout-org .title{
+  text-transform:none;
+  position:relative;
+  padding-bottom:.18em;
+}
+/* barra laranja sob "App", logo abaixo da linha de base: as pernas dos "p" passam por
+   ela (span .title-mark no index.html) */
+/* isolation: a barra (z-index:-1) fica atrás das letras, mas dentro do próprio "App" */
+.layout-org .title .title-mark{position:relative;display:inline-block;isolation:isolate;}
+/* elemento real (não ::after) para ter view-transition-name próprio: ao voltar para o modo
+   card a barra vira um neon que acende e se apaga atrás do texto (title-bar-neon) */
+.title .title-bar{display:none;}
+.layout-org .title .title-bar{
+  display:block;
+  position:absolute;left:.02em;right:0;bottom:.02em;z-index:-1;
+  height:.08em;
+  border-radius:99px;
+  background:#e5733e;
+  view-transition-name:title-bar;
+}
+.layout-org .subtitle{
+  font-weight:500;
+  letter-spacing:.32em;
+  color:var(--ink);
+  opacity:.85;
+}
+
+/* hero e grade encostam nas laterais da janela com o mesmo recuo (padding da .page) */
+.layout-org .page{max-width:none;justify-content:space-between;}
+.layout-org .stage{perspective:none;justify-content:flex-end;}
+/* rodapé sobreposto à base: a grade fica centralizada na altura total da janela */
+.layout-org .site-footer{position:absolute;left:0;right:0;bottom:0;}
+.layout-org .deck{
+  --cw:clamp(140px, min(14vw, 27vh), 250px);
+  --gap:calc(var(--cw) * 0.09);
+  transform:none;
+}
+.layout-org .card{
+  aspect-ratio:auto;
+  transform:none;
+  overflow:visible;
+  border-radius:.7em;
+  filter:drop-shadow(0 calc(var(--cw)*0.06) calc(var(--cw)*0.1) rgba(6,10,25,.45));
+}
+/* no hover sobe só a moldura, não a carta: a área do mouse fica parada. Se a carta inteira
+   subisse, com o cursor perto da borda de baixo ela saía de baixo dele, o hover caía, ela
+   descia e o hover voltava — em loop, reiniciando a animação da arte (piscava). */
+.layout-org .card:hover,
+.layout-org .card:focus-visible{transform:none;}
+.layout-org .card .frame{transition:transform .25s ease-out;}
+.layout-org .card:hover .frame,
+.layout-org .card:focus-visible .frame{transform:translateY(calc(var(--cw) * -0.035));}
+.layout-org .card .frame{
+  position:relative;
+  inset:auto;
+  padding:.3em;
+  gap:.3em;
+  border-radius:.7em;
+  background:var(--edge);
+  box-shadow:inset 0 0 0 .08em color-mix(in srgb, var(--accent2, var(--accent)) 85%, #fff);
+}
+/* painel escuro levemente tingido pela cor do app */
+.layout-org .card .frame::before{
+  inset:.3em;
+  border-radius:.48em;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--panel) 30%, #0b0f17) 0%,
+    color-mix(in srgb, var(--panel) 16%, #070a10) 100%);
+}
+.layout-org .card .titlebar{border-radius:.42em .42em .2em .2em;}
+.layout-org .card .art{flex:none;aspect-ratio:4/3;margin:0 .1em;}
+.layout-org .card .foil,
+.layout-org .card .art .hover-video{display:none;}
+.layout-org .card .art.logo > img{filter:none !important;}
+
+.layout-org .card .info{
+  display:flex;
+  flex-direction:column;
+  gap:.35em;
+  padding:.35em .45em .45em;
+  color:#fff;
+}
+/* tipo da aplicação: até três linhas (altura fixa para os cards ficarem alinhados) */
+.layout-org .card .info-name{
+  display:flex;align-items:flex-start;gap:.45em;
+  min-height:3.3em;
+  font-family:"Archivo",sans-serif;
+  font-size:.62em;font-weight:600;line-height:1.1;
+}
+.layout-org .card .info-name > span:last-child{
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+  overflow:hidden;
+}
+.layout-org .card .info-name .dot{
+  width:.55em;height:.55em;border-radius:50%;flex:none;
+  margin-top:.28em;
+  background:#22d36b;
+  box-shadow:0 0 .4em rgba(34,211,107,.6);
+}
+/* título da carta (faixa do topo) levemente maior no modo organizado */
+.layout-org .card .cardname{font-size:.65em;}
+.layout-org .card .open{
+  margin-top:.2em;
+  display:flex;align-items:center;justify-content:center;
+  padding:.62em 0;
+  font-family:"Archivo Black","Archivo",sans-serif;
+  font-size:.46em;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-radius:.55em;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(0,0,0,.25);
+  transition:background .25s ease, border-color .25s ease, color .25s ease;
+}
+.layout-org .card:hover .open,
+.layout-org .card:focus-visible .open{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--fg);
+}
+
+@media (max-width:1000px){
+  .layout-org .stage{justify-content:center;}
+  .layout-org .site-footer{position:static;}
+  .layout-org .deck{--cw:min(43vw, 22vh);}
+  .layout-org .card{transform:none !important;aspect-ratio:auto;}
+}
+@media (max-width:1000px) and (orientation:landscape){
+  .layout-org .deck{--cw:min(19vw, 30vh);}
+}

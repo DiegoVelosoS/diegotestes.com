@@ -11,10 +11,11 @@
   transform:translate3d(var(--tx,0), var(--ty,0), var(--tz,0)) rotate(var(--rot,0)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
   transition:transform .45s cubic-bezier(.22,.61,.36,1), filter .45s ease;
   color:var(--fg,#fff);
-  --edge:color-mix(in srgb, var(--accent) 52%, #05070d);
-  --edge-hi:color-mix(in srgb, var(--accent) 68%, #ffffff);
-  --panel:color-mix(in srgb, var(--accent) 80%, #0a0d16);
+  --edge:color-mix(in srgb, var(--accent2, var(--accent)) 52%, #05070d);
+  --edge-hi:color-mix(in srgb, var(--accent2, var(--accent)) 68%, #ffffff);
+  --panel:color-mix(in srgb, var(--accent2, var(--accent)) 80%, #0a0d16);
   --plate:color-mix(in srgb, var(--accent) 90%, #ffffff);
+  --detail:var(--accent3, var(--accent2, var(--accent)));
   filter:drop-shadow(0 calc(var(--cw)*0.10) calc(var(--cw)*0.14) rgba(6,10,25,.5));
 }
 .card:hover,
@@ -67,13 +68,13 @@
   width:.8em;height:.8em;flex:none;
   border-radius:.12em;
   transform:rotate(45deg);
-  background:radial-gradient(circle at 32% 30%, #fff 0%, var(--edge-hi) 42%, var(--edge) 100%);
+  background:radial-gradient(circle at 32% 30%, #fff 0%, color-mix(in srgb, var(--detail) 70%, #fff) 42%, color-mix(in srgb, var(--detail) 60%, #05070d) 100%);
   box-shadow:0 0 .18em rgba(255,255,255,.55), inset 0 0 .1em rgba(0,0,0,.45);
 }
 .card .cardname{
   flex:1;min-width:0;
   font-family:"Archivo Black","Archivo",sans-serif;
-  font-size:.72em;line-height:1;
+  font-size:.6em;line-height:1;
   letter-spacing:-.02em;
   text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
@@ -90,7 +91,7 @@
     inset 0 0 0 .13em rgba(255,255,255,.10),
     inset 0 .3em .55em rgba(0,0,0,.5);
 }
-.card .art:has(img.ready) .ph{opacity:0;}
+.card .art:has(> img.ready) .ph{opacity:0;}
 .card .art .ph{
   position:absolute;inset:0;
   display:flex;align-items:center;justify-content:center;
@@ -99,68 +100,55 @@
   color:#fff;opacity:.9;
   user-select:none;
 }
-.card .art img{
+.card .art > img{
   position:absolute;inset:0;
   width:100%;height:100%;
   object-fit:cover;object-position:top center;
   opacity:0;transition:opacity .5s ease;
 }
-.card .art img.ready{opacity:1;}
+.card .art > img.ready{opacity:1;}
 
-.card .typeline{
-  padding:.24em .5em;
-  border-radius:.3em;
-  font-size:.5em;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  background:linear-gradient(180deg,
-    color-mix(in srgb, var(--plate) 74%, #000) 0%,
-    color-mix(in srgb, var(--plate) 88%, #000) 100%);
-  box-shadow:inset 0 0 0 .07em rgba(0,0,0,.32);
-  opacity:.95;
+/* arte com logomarca: placa clara e imagem inteira centralizada */
+.card .art.logo{
+  background:#fff;
+  box-shadow:
+    inset 0 0 0 .09em var(--edge),
+    inset 0 0 0 .13em rgba(255,255,255,.6),
+    inset 0 .2em .4em rgba(0,0,0,.18);
 }
-
-.card .textbox{
-  display:flex;flex-direction:column;gap:.3em;
-  padding:.46em .55em;
-  border-radius:.34em;
-  background:linear-gradient(160deg,
-    color-mix(in srgb, var(--panel) 86%, #fff) 0%,
-    var(--panel) 52%,
-    color-mix(in srgb, var(--panel) 80%, #000) 100%);
-  box-shadow:inset 0 0 0 .06em rgba(0,0,0,.3), inset 0 .08em 0 rgba(255,255,255,.14);
+.card .art.logo .ph{color:var(--edge);}
+.card .art .hover-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;transition:opacity .45s ease;
 }
-.card .host{
-  font-size:.5em;font-weight:600;opacity:.82;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.card:hover .art .hover-video,
+.card:focus-visible .art .hover-video,
+.card.portal-ghost .art .hover-video{opacity:1;}
+/* contorno claro mantém a logo legível sobre o vídeo escuro */
+.card .art.logo > img{transition:opacity .5s ease, filter .45s ease;}
+.card:hover .art.logo > img,
+.card:focus-visible .art.logo > img,
+.card.portal-ghost .art.logo > img{
+  filter:drop-shadow(0 0 .12em rgba(255,255,255,.95)) drop-shadow(0 0 .5em rgba(255,255,255,.55));
 }
-.card .row{
-  display:flex;align-items:center;justify-content:flex-end;
-}
-.card .cta{
-  font-size:.5em;font-weight:800;letter-spacing:.05em;
-  padding:.36em .7em;border-radius:999px;
-  background:var(--fg);color:var(--panel);
-  box-shadow:0 .1em .2em rgba(0,0,0,.35);
+.card .art.logo > img{
+  inset:12%;
+  width:76%;height:76%;
+  object-fit:contain;object-position:center;
 }
 
 .card .badge{
-  position:absolute;right:-.16em;top:-.16em;z-index:3;
-  min-width:1.7em;height:1.7em;padding:0 .32em;
-  display:flex;align-items:center;justify-content:center;
+  flex:none;
+  padding:.2em .42em;
   font-family:"Archivo Black","Archivo",sans-serif;
-  font-size:.56em;letter-spacing:.03em;
-  color:var(--fg);
-  border-radius:.5em;
-  background:radial-gradient(circle at 34% 28%,
-    color-mix(in srgb, var(--plate) 86%, #fff) 0%,
-    var(--plate) 52%, var(--edge) 100%);
-  box-shadow:
-    inset 0 0 0 .09em rgba(255,255,255,.28),
-    inset 0 0 .2em rgba(0,0,0,.5),
-    0 .12em .24em rgba(0,0,0,.45);
+  font-size:.4em;line-height:1;letter-spacing:.06em;
+  color:var(--fg-detail, var(--fg));
+  border-radius:.4em;
+  background:color-mix(in srgb, var(--detail) 82%, #000);
+  box-shadow:inset 0 0 0 .1em rgba(255,255,255,.22), inset 0 .1em .2em rgba(0,0,0,.4);
+  opacity:.9;
 }
 .card .foil{
   position:absolute;inset:0;z-index:4;
@@ -168,8 +156,8 @@
   pointer-events:none;
   background:linear-gradient(115deg,
     transparent 32%,
-    rgba(255,255,255,.32) 44%,
-    rgba(255,255,255,.05) 52%,
+    rgba(255,150,85,.42) 44%,
+    rgba(255,150,85,.07) 52%,
     transparent 66%);
   mix-blend-mode:screen;
   opacity:.32;
