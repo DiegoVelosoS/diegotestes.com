@@ -26,7 +26,11 @@ export function createCard(app, offset){
 
   // faixa do nome (título da carta) + selo
   const titlebar = el("span", "titlebar");
-  titlebar.append(el("span", "gem"), el("span", "cardname", app.name), el("span", "badge", app.badge || "HML"));
+  // versão no fim do nome (ex.: "MAPAS v2") escapa do caixa-alta do título
+  const [, base = app.name, ver] = (app.name || "").match(/^(.*?)(?:\s+(v\d[\w.]*))?$/) || [];
+  const cardname = el("span", "cardname", base);
+  if (ver) cardname.append(" ", el("span", "ver", ver));
+  titlebar.append(el("span", "gem"), cardname, el("span", "badge", app.badge || "HML"));
 
   // janela de "arte" = logomarca do projeto (ou print da tela inicial)
   const art = el("span", app.logo ? "art logo" : "art");

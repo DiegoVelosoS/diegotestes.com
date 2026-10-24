@@ -5,6 +5,7 @@
      seadi     : emblema da folha do modal de boas-vindas
      louvor    : logomarca encolhe sobre o fundo de luzes, o nome cresce e o card branco surge atrás
      zeerr     : logo ZEE Roraima se montando (mapa gira, faixas envolvem, texto surge)
+     zeerr2    : GIF do mapa de Roraima com as camadas do ZEE aparecendo uma a uma, terminando na logo
      expoferr  : fundo do ExpoferRR Quiz (cena da fazenda + selo com raios de luz girando)
    O desenho e o tempo ficam em assets/styles/hover-fx.css; aqui só monta o HTML
    (e o contador do Eleitores, que precisa de JS). */
@@ -56,6 +57,9 @@ const MARKUP = {
     <img class="lv-logo" src="assets/images/logos/louvor-marca.png" alt="">
     <b class="lv-nome">Louvor Paz Church</b>`,
 
+  zeerr2: `
+    <img class="z2-mapa" src="assets/images/logos/zeerr2-camadas.gif" alt="">`,
+
   expoferr: `
     <img class="ex-cena" src="assets/images/logos/expoferr-cena.jpg" alt="">
     <span class="ex-selo">
@@ -84,7 +88,18 @@ export function createHoverFx(card, kind){
   if (MARKUP[kind]) fx.innerHTML = MARKUP[kind];
   if (SVG_FILES[kind]) bindSvg(card, fx, SVG_FILES[kind]);
   if (kind === "eleitores") bindCounter(card, fx);
+  if (kind === "zeerr2") bindGifRestart(card, fx.querySelector("img"));
   return fx;
+}
+
+// O GIF continua rodando enquanto a camada está escondida; trocar a URL (só o fragmento,
+// sem novo download) faz cada hover recomeçar do mapa vazio.
+function bindGifRestart(card, img){
+  const src = img.getAttribute("src");
+  let n = 0;
+  const restart = () => { img.src = src + "#" + (++n); };
+  card.addEventListener("pointerenter", restart);
+  card.addEventListener("focus", restart);
 }
 
 function bindSvg(card, fx, src){

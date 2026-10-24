@@ -79,6 +79,7 @@
   text-transform:uppercase;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
+.card .cardname .ver{text-transform:none;}
 
 .card .art{
   position:relative;

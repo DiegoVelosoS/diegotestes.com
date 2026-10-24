@@ -296,6 +296,17 @@
 @keyframes zr-envolve{from{clip-path:inset(0 0 0 100%);}to{clip-path:inset(0);}}
 @keyframes zr-revela{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0);}}
 
+/* ===================== ZEERR v2 — camadas do ZEE surgindo sobre o mapa =====================
+   zeerr2-camadas.gif: capturas do próprio sistema, alinhadas pelo mapa base e recortadas
+   em 4:3 (mesma proporção da arte), do mapa vazio até todas as camadas ligadas. No fim a
+   logo ZEE Roraima surge numa placa sobre o mapa completo; o GIF toca uma vez e para aí. */
+.fx-zeerr2{background:#e9ecd0;}
+.fx-zeerr2 .z2-mapa{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+}
+
 /* ===================== EXPOFERR QUIZ — fundo da tela inicial do quiz =====================
    Igual ao Quiz-ZEE (css/style.css): céu em degradê, cena da fazenda com 70% de opacidade,
    selo do evento no centro e os raios de luz (raio-luz.png, 175% do selo, 55% de opacidade)

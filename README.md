@@ -50,7 +50,7 @@ Edite **`assets/scripts/data/apps.js`**. Cada item aceita:
 - `accent` / `accent2` / `accent3`: cores do título, da moldura e dos detalhes (hex); padrão `#2f6fc4`
 - `logo`: logomarca exibida na "arte"
 - `video`: vídeo atrás da logo no hover (padrão `assets/videos/vortex.mp4`)
-- `hoverFx`: animação de hover no modo organizado (`eleitores` \| `coleta` \| `seadi` \| `louvor` \| `zeerr` \| `expoferr`)
+- `hoverFx`: animação de hover no modo organizado (`eleitores` \| `coleta` \| `seadi` \| `louvor` \| `zeerr` \| `zeerr2` \| `expoferr`)
 - `shot`: URL usada só para o screenshot (padrão = `url`)
 - `img`: imagem fixa para a "arte" (ex.: `assets/images/foo.png`)
 - `noshot`: `true` desativa o screenshot e mostra só a inicial do app
