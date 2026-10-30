@@ -15,6 +15,8 @@ export function createCard(app, offset){
   a.style.setProperty("--fg", isLight(app.accent) ? "#12203a" : "#ffffff");
   if (app.accent2) a.style.setProperty("--accent2", app.accent2);
   if (app.accent3) a.style.setProperty("--accent3", app.accent3);
+  if (app.logoBg) a.style.setProperty("--logo-bg", app.logoBg);
+  if (app.logoSize) a.style.setProperty("--logo-size", app.logoSize);
   const detail = app.accent3 || app.accent2 || app.accent;
   a.style.setProperty("--fg-detail", isLight(detail) ? "#12203a" : "#ffffff");
   a.style.setProperty("--tx", `calc(var(--cw) * ${offset.tx || 0})`);
@@ -39,6 +41,12 @@ export function createCard(app, offset){
   img.loading = "lazy"; img.alt = "";
   art.append(ph, img);
   if (app.logo) art.prepend(createHoverVideo(a, app.video || HOVER_VIDEO));
+  if (app.artBg){                       // arte TCG atrás da logo (só no modo cartas)
+    const bg = el("span", "art-bg");
+    bg.style.backgroundImage = `url("${app.artBg}")`;
+    art.classList.add("has-bg");
+    art.prepend(bg, el("span", "art-glow"));
+  }
   if (app.logo){                        // logomarca do projeto
     img.src = app.logo;
     img.onload = () => img.classList.add("ready");

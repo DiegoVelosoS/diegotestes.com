@@ -8,6 +8,9 @@
       accent3: cor dos detalhes — losango e selo (opcional; padrão = accent2)
       shot   : URL usada só para o print ao vivo (opcional; padrão = url)
       logo   : logomarca exibida na "arte" (fundo claro, imagem inteira)
+      logoBg : cor de fundo da "arte" atrás da logo (opcional; padrão branco)
+      logoSize: tamanho da logo dentro da "arte" (opcional; padrão "76%"; menor p/ logos quadradas)
+      artBg  : imagem de fundo da "arte" atrás da logo, só no modo cartas (opcional)
       video  : vídeo exibido atrás da logo no hover (opcional; padrão assets/videos/vortex.mp4)
       hoverFx: animação da arte no hover do modo organizado (eleitores | coleta | seadi | louvor | zeerr | zeerr2 | expoferr)
       img    : caminho de uma imagem fixa p/ a "arte" (ex.: "assets/images/foo.png")
@@ -15,10 +18,10 @@
       badge  : selo no canto (padrão "HML")
    ======================================================================= */
 export const APPS = [
-  { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", logo: "assets/images/logos/eleitores.svg", hoverFx: "eleitores" },
-  { name: "Coleta SEADI",   type: "Coleta de dados de campo.", url: "https://coleta.diegotestes.com",        accent: "#2d6a4f", logo: "assets/images/logos/coleta.svg", hoverFx: "coleta" },
-  { name: "MAPAS v3",   type: "Versão 3.0 do sistema de Mapas Interativos do ZEE-RR.", url: "https://zeerr3.diegotestes.com", accent: "#00aff0", logo: "assets/images/logos/zeerr.svg", hoverFx: "zeerr" },
-  { name: "MAPAS v2",   type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#00a85a", logo: "assets/images/logos/zeerr.svg", hoverFx: "zeerr2" },
-  { name: "Louvor",        type: "Escala do grupo de louvor da igreja.", url: "https://louvor.diegotestes.com",        accent: "#14305b", logo: "assets/images/logos/louvor.png", hoverFx: "louvor" },
-  { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", hoverFx: "expoferr" },
+  { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", logo: "assets/images/logos/eleitores.svg", artBg: "assets/images/Eleitores.svg", hoverFx: "eleitores" },
+  { name: "Coleta SEADI",   type: "Coleta de dados de campo.", url: "https://coleta.diegotestes.com",        accent: "#2d6a4f", logo: "assets/images/logos/coleta.svg", artBg: "assets/images/Coleta.png", hoverFx: "coleta" },
+  { name: "MAPAS v3",   type: "Versão 3.0 do sistema de Mapas Interativos do ZEE-RR.", url: "https://zeerr3.diegotestes.com", accent: "#00aff0", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v3.0.png", hoverFx: "zeerr" },
+  { name: "MAPAS v2",   type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#00a85a", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v2.0.png", hoverFx: "zeerr2" },
+  { name: "Louvor",        type: "Escala do grupo de louvor da igreja.", url: "https://louvor.diegotestes.com",        accent: "#14305b", logo: "assets/images/logos/louvor.png", logoSize: "50%", artBg: "assets/images/Louvor.png", hoverFx: "louvor" },
+  { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", artBg: "assets/images/ExpofeRR.png", hoverFx: "expoferr" },
 ];

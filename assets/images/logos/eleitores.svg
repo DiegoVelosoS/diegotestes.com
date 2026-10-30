@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 110">
-  <rect width="286" height="110" rx="14" fill="#0B1A3A"/>
-  <circle cx="48" cy="55" r="23" fill="#0B1A3A" stroke="#E5973E" stroke-width="3.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 26 244 70">
+  <circle cx="48" cy="55" r="23" fill="#FFFFFF" stroke="#E5973E" stroke-width="3.5"/>
   <path fill="none" stroke="#E5973E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(33 40) scale(1.25)" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
   <g font-family="Segoe UI, Roboto, Arial, sans-serif" font-weight="900" letter-spacing="1">
-    <text x="88" y="45" font-size="25" fill="#FFFFFF">ELEITORES</text>
+    <text x="88" y="45" font-size="25" fill="#0B1A3A">ELEITORES</text>
     <text x="88" y="72" font-size="25" fill="#E5973E" textLength="172" lengthAdjust="spacingAndGlyphs">CONECTADOS</text>
     <text x="89" y="90" font-size="10" font-weight="700" fill="#E5973E" textLength="150" lengthAdjust="spacing">CADA VOZ IMPORTA</text>
   </g>

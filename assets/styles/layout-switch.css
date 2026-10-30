@@ -203,6 +203,8 @@
 .layout-org .card .foil,
 .layout-org .card .art .hover-video{display:none;}
 .layout-org .card .art.logo > img{filter:none !important;}
+.layout-org .card .art .art-bg,
+.layout-org .card .art .art-glow{display:none;}
 
 .layout-org .card .info{
   display:flex;

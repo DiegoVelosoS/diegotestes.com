@@ -49,6 +49,9 @@ Edite **`assets/scripts/data/apps.js`**. Cada item aceita:
 - `url` (obrigatório): link aberto ao clicar
 - `accent` / `accent2` / `accent3`: cores do título, da moldura e dos detalhes (hex); padrão `#2f6fc4`
 - `logo`: logomarca exibida na "arte"
+- `logoBg`: cor de fundo da "arte" atrás da logo (padrão branco)
+- `logoSize`: tamanho da logo dentro da "arte" (padrão `76%`; menor para logos quadradas)
+- `artBg`: imagem de fundo da "arte" atrás da logo, só no modo cartas
 - `video`: vídeo atrás da logo no hover (padrão `assets/videos/vortex.mp4`)
 - `hoverFx`: animação de hover no modo organizado (`eleitores` \| `coleta` \| `seadi` \| `louvor` \| `zeerr` \| `zeerr2` \| `expoferr`)
 - `shot`: URL usada só para o screenshot (padrão = `url`)
