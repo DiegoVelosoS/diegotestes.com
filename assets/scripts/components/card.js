@@ -60,7 +60,7 @@ export function createCard(app, offset){
   const info = el("span", "info");
   const kind = el("span", "info-name");
   kind.append(el("span", "dot"), el("span", null, app.type || app.name));
-  info.append(kind, el("span", "open", "Abrir ↗"));
+  info.append(kind, el("span", "open", "Abrir"));
 
   frame.append(titlebar, art, info);
   a.append(frame, el("span", "foil"));

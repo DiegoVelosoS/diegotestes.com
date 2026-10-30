@@ -1,5 +1,5 @@
 /* =======================================================================
-   👉 EDITE ESTA LISTA com as aplicações hospedadas na VPS (diegotestes.com).
+   EDITE ESTA LISTA com as aplicações hospedadas na VPS (diegotestes.com).
       name   : nome da carta
       type   : texto curto com o tipo da aplicação, no rodapé do modo organizado (opcional; padrão = name)
       url    : link aberto ao clicar (tela de entrada da aplicação)
@@ -15,7 +15,7 @@
       badge  : selo no canto (padrão "HML")
    ======================================================================= */
 export const APPS = [
-  { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", accent2: "#13284f", logo: "assets/images/logos/eleitores.svg", hoverFx: "eleitores" },
+  { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", logo: "assets/images/logos/eleitores.svg", hoverFx: "eleitores" },
   { name: "Coleta SEADI",   type: "Coleta de dados de campo.", url: "https://coleta.diegotestes.com",        accent: "#2d6a4f", logo: "assets/images/logos/coleta.svg", hoverFx: "coleta" },
   { name: "MAPAS v3",   type: "Versão 3.0 do sistema de Mapas Interativos do ZEE-RR.", url: "https://zeerr3.diegotestes.com", accent: "#00aff0", logo: "assets/images/logos/zeerr.svg", hoverFx: "zeerr" },
   { name: "MAPAS v2",   type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#00a85a", logo: "assets/images/logos/zeerr.svg", hoverFx: "zeerr2" },
