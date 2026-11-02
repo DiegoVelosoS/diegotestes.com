@@ -2,13 +2,14 @@
 import { APPS } from "./data/apps.js";
 import { OFFSETS } from "./data/offsets.js";
 import { createCard } from "./components/card.js";
+import { createStack } from "./components/stack.js";
 import { initLayoutSwitch } from "./components/layout-switch.js";
 
 const deck = document.getElementById("deck");
 if (deck){
   APPS.forEach((app, i) => {
     const offset = OFFSETS[i % OFFSETS.length];
-    deck.appendChild(createCard(app, offset));
+    deck.appendChild(app.stack ? createStack(app.stack, offset) : createCard(app, offset));
   });
   nameForLayoutTransition(deck);
 }
@@ -21,7 +22,7 @@ const fx = document.getElementById("fx");
 // para se deslocarem sozinhas, em cascata (55ms entre uma carta e a seguinte).
 function nameForLayoutTransition(deck){
   const rules = [];
-  [...deck.children].forEach((card, i) => {
+  deck.querySelectorAll(".card").forEach((card, i) => {
     card.style.viewTransitionName = "card-" + i;
     const art = card.querySelector(".art");
     if (art){

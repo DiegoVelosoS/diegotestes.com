@@ -16,12 +16,17 @@
       img    : caminho de uma imagem fixa p/ a "arte" (ex.: "assets/images/foo.png")
       noshot : true  -> não tenta screenshot, mostra só a inicial do app
       badge  : selo no canto (padrão "HML")
+   Pilha: { stack: [frente, trás] } ocupa uma posição só, com as cartas empilhadas
+   (a de trás aparece um pouco acima; a que está sob o mouse vem para a frente).
    ======================================================================= */
 export const APPS = [
   { name: "Eleitores",     type: "Gerenciador de campanha.", url: "https://eleitores.diegotestes.com",     accent: "#e5973e", logo: "assets/images/logos/eleitores.svg", artBg: "assets/images/Eleitores.svg", hoverFx: "eleitores" },
   { name: "Coleta SEADI",   type: "Coleta de dados de campo.", url: "https://coleta.diegotestes.com",        accent: "#2d6a4f", logo: "assets/images/logos/coleta.svg", artBg: "assets/images/Coleta.png", hoverFx: "coleta" },
-  { name: "MAPAS v3",   type: "Versão 3.0 do sistema de Mapas Interativos do ZEE-RR.", url: "https://zeerr3.diegotestes.com", accent: "#00aff0", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v3.0.png", hoverFx: "zeerr" },
-  { name: "MAPAS v2",   type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#00a85a", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v2.0.png", hoverFx: "zeerr2" },
+  { stack: [
+    { name: "MAPAS v2",   type: "Mapas do Zoneamento Ecológico-Econômico de Roraima.", url: "https://zeerr.diegotestes.com",         accent: "#00a85a", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v2.0.png", hoverFx: "zeerr2" },
+    { name: "MAPAS v3",   type: "Versão 3.0 do sistema de Mapas Interativos do ZEE-RR.", url: "https://zeerr3.diegotestes.com", accent: "#00aff0", logo: "assets/images/logos/zeerr.svg", artBg: "assets/images/Mapas v3.0.png", hoverFx: "zeerr" },
+  ] },
+  { name: "My Finance",    type: "Controle financeiro pessoal (PWA).", url: "https://fin.dvscloud.sbs",              accent: "#3d5afe", logo: "assets/images/logos/myfinance.png", logoBg: "#050a1f", logoSize: "62%", artBg: "assets/images/My Finance.webp" },
   { name: "Louvor",        type: "Escala do grupo de louvor da igreja.", url: "https://louvor.diegotestes.com",        accent: "#14305b", logo: "assets/images/logos/louvor.png", logoSize: "50%", artBg: "assets/images/Louvor.png", hoverFx: "louvor" },
   { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", artBg: "assets/images/ExpofeRR.png", hoverFx: "expoferr" },
 ];

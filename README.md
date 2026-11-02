@@ -19,6 +19,7 @@ Site estático, sem build e sem dependências: só HTML, CSS e JavaScript (ES Mo
     │   ├── hero.css            # bloco de texto (marca, título, subtítulo)
     │   ├── deck.css            # .stage + .deck (palco 3D)
     │   ├── card.css            # a carta estilo TCG e seus elementos
+    │   ├── stack.css           # pilha de cartas numa só posição (hover traz a carta para a frente)
     │   ├── portal.css          # animação "entrar no portal" ao clicar numa carta
     │   ├── responsive.css      # media queries
     │   ├── layout-switch.css   # botão e modo organizado (grade)
@@ -30,6 +31,7 @@ Site estático, sem build e sem dependências: só HTML, CSS e JavaScript (ES Mo
         │   └── offsets.js      # deslocamentos 3D por posição (ciclo)
         ├── components/
         │   ├── card.js         # createCard(app, offset) -> elemento <a.card>
+        │   ├── stack.js        # createStack(apps, offset) -> cartas empilhadas
         │   ├── hover-fx.js     # markup das animações de hover por aplicação
         │   └── layout-switch.js # alterna modo cartas / modo organizado
         ├── animations/
@@ -59,6 +61,9 @@ Edite **`assets/scripts/data/apps.js`**. Cada item aceita:
 - `noshot`: `true` desativa o screenshot e mostra só a inicial do app
 - `type`: texto do rodapé no modo organizado
 - `badge`: selo do canto (padrão `HML`)
+
+Para empilhar cartas numa só posição, use `{ stack: [frente, trás] }`: a de trás aparece um pouco acima
+e a carta sob o mouse vem para a frente (ex.: Mapas v2 sobre Mapas v3).
 
 O layout se ajusta a qualquer quantidade de cards (os offsets 3D são percorridos em ciclo).
 

@@ -1,0 +1,37 @@
+/* Pilha de cartas numa só posição do deck (stack.js): a da frente cobre a de trás, que
+   aparece um pouco acima e à esquerda. A carta sob o mouse vem para a frente.
+   O deslocamento usa a propriedade `translate`, que soma ao `transform` da carta
+   (inclusive quando ele é zerado no modo organizado e nas telas estreitas). */
+.stack{
+  display:grid;
+  transform-style:preserve-3d;
+  --stack-dx:calc(var(--cw) * -0.05);
+  --stack-dy:calc(var(--cw) * -0.13);
+}
+.stack > .card{grid-area:1 / 1;}
+.stack > .stack-front{z-index:2;}
+.stack > .stack-back{
+  z-index:1;
+  /* no deck 3D a ordem vem da profundidade: a de trás fica um pouco mais funda */
+  translate:calc(var(--cw) * -0.07) calc(var(--cw) * -0.2) calc(var(--cw) * -0.04);
+  filter:brightness(.82) drop-shadow(0 calc(var(--cw)*0.10) calc(var(--cw)*0.14) rgba(6,10,25,.5));
+}
+/* em destaque: a carta sob o mouse (no deck 3D o hover já a traz para a frente em Z) */
+.stack > .card:hover,
+.stack > .card:focus-visible{z-index:3;}
+.stack > .stack-back:hover,
+.stack > .stack-back:focus-visible{filter:drop-shadow(0 calc(var(--cw)*0.16) calc(var(--cw)*0.18) rgba(6,10,25,.6));}
+
+/* modo organizado e telas estreitas: sem profundidade, a ordem fica com o z-index */
+.layout-org .stack{transform-style:flat;}
+.layout-org .stack > .stack-back{
+  translate:var(--stack-dx) var(--stack-dy);
+  filter:brightness(.82) drop-shadow(0 calc(var(--cw)*0.06) calc(var(--cw)*0.1) rgba(6,10,25,.45));
+}
+.layout-org .stack > .stack-back:hover,
+.layout-org .stack > .stack-back:focus-visible{filter:drop-shadow(0 calc(var(--cw)*0.06) calc(var(--cw)*0.1) rgba(6,10,25,.45));}
+
+@media (max-width:1000px){
+  .stack{transform-style:flat;--stack-dy:calc(var(--cw) * -0.065);}
+  .stack > .stack-back{translate:var(--stack-dx) var(--stack-dy);}
+}
