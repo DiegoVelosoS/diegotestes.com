@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff5f6d"/>
+    </linearGradient>
+    <linearGradient id="noite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a1f6e"/>
+      <stop offset="1" stop-color="#120f35"/>
+    </linearGradient>
+  </defs>
+  <!-- tepui (mesmo desenho do ícone do quiz) -->
+  <circle cx="262" cy="52" r="20" fill="#ffd166"/>
+  <path d="M120 128 L148 122 L166 62 L234 56 L252 118 L282 124 L282 140 L120 140Z" fill="url(#sol)"/>
+  <text x="200" y="232" text-anchor="middle" font-family="'Arial Black','Segoe UI Black',Impact,sans-serif" font-weight="900" font-size="96" letter-spacing="4" fill="url(#noite)">TEPUI</text>
+  <text x="200" y="272" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-weight="800" font-size="24" letter-spacing="7" fill="#e0563f">QUIZ DE RORAIMA</text>
+</svg>

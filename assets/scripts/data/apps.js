@@ -28,5 +28,8 @@ export const APPS = [
   ] },
   { name: "My Finance",    type: "Controle financeiro pessoal (PWA).", url: "https://fin.dvscloud.sbs",              accent: "#3d5afe", logo: "assets/images/logos/myfinance.png", logoBg: "#050a1f", logoSize: "62%", artBg: "assets/images/My Finance.webp" },
   { name: "Louvor",        type: "Escala do grupo de louvor da igreja.", url: "https://louvor.diegotestes.com",        accent: "#14305b", logo: "assets/images/logos/louvor.png", logoSize: "50%", artBg: "assets/images/Louvor.png", hoverFx: "louvor" },
-  { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", artBg: "assets/images/ExpofeRR.png", hoverFx: "expoferr" },
+  { stack: [
+    { name: "Quiz Roraima", type: "Tepui: quiz sobre história, geografia e cultura de Roraima.", url: "https://quizrr.dvscloud.sbs", accent: "#2a1f6e", accent3: "#ffb347", logo: "assets/images/logos/tepui.svg", artBg: "assets/images/Tepui.svg" },
+    { name: "ExpoferrQuiz",  type: "Quiz interativo.", url: "https://expoferrquiz.diegotestes.com",  accent: "#fcc800", logo: "assets/images/logos/expoferrquiz.png", artBg: "assets/images/ExpofeRR.png", hoverFx: "expoferr" },
+  ] },
 ];
