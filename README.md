@@ -8,6 +8,7 @@ Site estático, sem build e sem dependências: só HTML, CSS e JavaScript (ES Mo
 ```text
 .
 ├── index.html                  # markup mínimo: vídeo de fundo, botão de layout, hero + deck
+├── corriculo/                  # página /corriculo: portfólio comercial (index.html, curriculo.css, curriculo.js, img/)
 └── assets/
     ├── images/logos/           # logomarcas das cartas e imagens das animações de hover
     ├── videos/                 # portal.mp4 (fundo) e vortex.mp4 (hover das cartas)

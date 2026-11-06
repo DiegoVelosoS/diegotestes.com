@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diego Veloso — Desenvolvimento de Sistemas</title>
+<meta name="description" content="Portfólio de Diego Veloso: aplicações web, sistemas de gestão, mapas interativos, painéis e automações sob medida.">
+<link rel="icon" type="image/png" href="/corriculo/favicon.png">
+<link rel="apple-touch-icon" href="/corriculo/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/corriculo/curriculo.css">
+</head>
+<body>
+
+<header class="topbar" id="topo">
+  <div class="wrap topbar-in">
+    <a class="logo" href="#topo" aria-label="Diego Veloso, início">
+      <span class="logo-mark" aria-hidden="true">
+        <span class="logo-ico"></span>
+      </span>
+      <span class="logo-txt"><strong>Diego Veloso</strong><small>Desenvolvimento de sistemas</small></span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu">
+      <span class="ic" style="--i:url('/corriculo/img/icons/menu.png')" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="nav" aria-label="Seções">
+      <a href="#aplicacoes" data-sec="aplicacoes">Aplicações</a>
+      <a href="#solucoes" data-sec="solucoes">Soluções</a>
+      <a href="#servicos" data-sec="servicos">Serviços</a>
+      <a href="#sobre" data-sec="sobre">Sobre</a>
+      <a class="btn btn-primary nav-cta" href="https://wa.me/5595991150093?text=Ol%C3%A1%2C%20Diego!%20Vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+        <span class="ic" style="--i:url('/corriculo/img/icons/whatsapp.png')" aria-hidden="true"></span>Fale conosco
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <div class="hero-txt">
+        <h1>Soluções Digitais<br>Sob Medida</h1>
+        <p class="lead">Desenvolvimento de aplicações web, sistemas de gestão, mapas interativos, painéis e automações para empresas, órgãos públicos e projetos personalizados.</p>
+        <ul class="pillars">
+          <li><div><strong>Versatilidade</strong><span>Diversas áreas e tecnologias</span></div></li>
+          <li><div><strong>Soluções Personalizadas</strong><span>Do planejamento à entrega</span></div></li>
+          <li><div><strong>Resultados Reais</strong><span>Mais controle e eficiência</span></div></li>
+        </ul>
+      </div>
+
+      <div class="devices" aria-hidden="true">
+        <div class="tablet"><div class="screen swap">
+          <img src="/corriculo/img/tepui-escuro.webp" alt="" class="on">
+          <img src="/corriculo/img/tepui-claro.webp" alt="">
+        </div></div>
+        <div class="laptop">
+          <div class="lid"><div class="screen swap">
+            <img src="/assets/images/Mapas v3.0.png" alt="" class="on">
+            <img class="fit-top" src="/corriculo/img/coleta.webp" alt="" style="background:#f1f5f2">
+            <img class="fit-top" src="/corriculo/img/zee-solos.webp" alt="" style="background:#eef2ef">
+          </div></div>
+          <div class="base"></div>
+        </div>
+        <div class="phone"><div class="screen swap">
+          <img src="/corriculo/img/louvor-claro.webp" alt="" class="on">
+          <img src="/corriculo/img/louvor-escuro.webp" alt="">
+          <img class="fit-mid" src="/corriculo/img/myfinance.webp" alt="" style="background:linear-gradient(#232648,#0c1643)">
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APLICAÇÕES -->
+  <section class="section section-snug" id="aplicacoes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title">
+          <div>
+            <h2>Minhas Aplicações</h2>
+            <p>Conheça as soluções desenvolvidas e adaptáveis à sua empresa.</p>
+          </div>
+        </div>
+        <label class="search">
+          <span class="ic" style="--i:url('/corriculo/img/icons/search.png')" aria-hidden="true"></span>
+          <input id="search" type="search" placeholder="Buscar aplicação..." autocomplete="off" aria-label="Buscar aplicação por nome ou categoria">
+        </label>
+      </div>
+
+      <div class="apps" id="apps">
+        <noscript><p class="empty">Ative o JavaScript para carregar as aplicações.</p></noscript>
+      </div>
+      <p class="empty" id="empty" hidden>Nenhuma aplicação encontrada para “<span id="emptyTerm"></span>”.</p>
+
+      <!-- faixa de soluções -->
+      <div class="strip">
+        <div class="strip-title">
+          <span class="ic" style="--i:url('/corriculo/img/icons/approval.png')" aria-hidden="true"></span>
+          <strong>Também Desenvolvo<br>Soluções Personalizadas</strong>
+        </div>
+        <ul class="strip-list" id="solutionsList"></ul>
+        <button class="btn btn-primary strip-cta" type="button" data-open-contact data-subject="Orçamento">
+          <span class="ic" style="--i:url('/corriculo/img/icons/right.png')" aria-hidden="true"></span>Solicitar Orçamento
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES (detalhe) -->
+  <section class="section section-alt section-snug" id="solucoes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title">
+          <div>
+            <h2>Soluções</h2>
+            <p>Tipos de sistemas que posso construir para o seu cenário.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tiles" id="solutionsGrid"></div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="section" id="servicos">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title">
+          <div>
+            <h2>Serviços</h2>
+            <p>Como posso ajudar, do primeiro rascunho à manutenção.</p>
+          </div>
+        </div>
+      </div>
+      <div class="services" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section section-alt" id="sobre">
+    <div class="wrap about">
+      <div class="about-card">
+        <img class="about-avatar" src="https://github.com/DiegoVelosoS.png?size=240" alt="Foto de Diego Veloso" width="120" height="120">
+        <h2>Diego Veloso</h2>
+        <p class="about-role">Desenvolvedor full stack · Roraima</p>
+        <a class="about-link" href="https://github.com/DiegoVelosoS" target="_blank" rel="noopener">
+          <span class="ic" style="--i:url('/corriculo/img/icons/github.png')" aria-hidden="true"></span>
+          github.com/DiegoVelosoS
+        </a>
+      </div>
+      <div class="about-body">
+        <h3>Perfil</h3>
+        <p>Desenvolvo sistemas que resolvem problemas concretos de gestão, coleta e visualização de dados — de CRMs com hierarquia de lideranças a mapas com dezenas de camadas geoespaciais do Zoneamento Ecológico-Econômico de Roraima. Cuido do projeto de ponta a ponta: levantamento, interface, API, banco de dados, deploy em VPS e evolução contínua.</p>
+
+        <h3>Forma de trabalho</h3>
+        <ol class="steps">
+          <li><strong>Conversa</strong><span>Entendo o processo atual e o problema a resolver.</span></li>
+          <li><strong>Proposta</strong><span>Escopo, prazos e tecnologia adequados ao caso.</span></li>
+          <li><strong>Entregas curtas</strong><span>Versões em homologação para validar cedo.</span></li>
+          <li><strong>Publicação</strong><span>Implantação, backup e acompanhamento.</span></li>
+        </ol>
+
+        <h3>Tecnologias</h3>
+        <ul class="chips" id="techList"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span>© 2026 Diego Veloso · Desenvolvimento de sistemas</span>
+    <small class="credit">Ícones por <a href="https://icons8.com.br" target="_blank" rel="noopener">Icons8</a></small>
+  </div>
+</footer>
+
+<!-- Detalhes da aplicação -->
+<dialog class="modal modal-app" id="appModal" aria-labelledby="appTitle">
+  <button class="modal-x" type="button" data-close aria-label="Fechar">
+    <span class="ic" style="--i:url('/corriculo/img/icons/multiply.png')" aria-hidden="true"></span>
+  </button>
+  <div id="appDetail"></div>
+</dialog>
+
+<!-- Solicitar projeto -->
+<dialog class="modal modal-contact" id="contactModal" aria-labelledby="contactTitle">
+  <button class="modal-x" type="button" data-close aria-label="Fechar">
+    <span class="ic" style="--i:url('/corriculo/img/icons/multiply.png')" aria-hidden="true"></span>
+  </button>
+  <form id="contactForm" class="form" novalidate>
+    <h2 id="contactTitle">Solicitar Projeto</h2>
+    <p class="form-sub">Conte o que você precisa. A mensagem abre no seu e-mail, pronta para enviar.</p>
+    <div class="form-row">
+      <label>Nome<input name="nome" required autocomplete="name"></label>
+      <label>E-mail ou telefone<input name="contato" required autocomplete="email"></label>
+    </div>
+    <label><span>Organização <span class="opt">(opcional)</span></span><input name="org" autocomplete="organization"></label>
+    <label>Tipo de solução
+      <select name="tipo" id="contactType"></select>
+    </label>
+    <label>Descreva o projeto<textarea name="msg" rows="5" required placeholder="Qual problema o sistema deve resolver? Quem vai usar? Há prazo?"></textarea></label>
+    <p class="form-err" id="formErr" hidden>Preencha nome, contato e a descrição do projeto.</p>
+    <button class="btn btn-primary btn-block" type="submit">
+      <span class="ic" style="--i:url('/corriculo/img/icons/paper-plane.png')" aria-hidden="true"></span>Enviar solicitação
+    </button>
+  </form>
+</dialog>
+
+<script type="module" src="/corriculo/curriculo.js"></script>
+</body>
+</html>
